@@ -1,0 +1,21 @@
+{
+  "name": "suyu-shampoo-site",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "og": "node tools/build-og.js",
+    "build": "node tools/build.js",
+    "check": "node tools/check.js",
+    "all": "npm run og && npm run build && npm run check"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "opentype.js": "^2.0.0",
+    "sharp": "^0.35.3"
+  },
+  "private": true
+}
