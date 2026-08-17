@@ -1,0 +1,12 @@
+{
+  // 터미널에서 Shift+드래그로 선택하면 자동으로 클립보드에 복사된다
+  "terminal.integrated.copyOnSelection": true,
+  // 마우스 우클릭 = 복사/붙여넣기 (선택 영역이 있으면 복사)
+  "terminal.integrated.rightClickBehavior": "copyPaste",
+  // 긴 출력이 잘리지 않도록 스크롤백 확대 (기본 1000 → 100000줄)
+  "terminal.integrated.scrollback": 100000,
+  // 줄바꿈 강제 개행 방지 → 표가 깨지지 않고 통째로 복사됨
+  "terminal.integrated.wordSeparators": " ()[]{}',\"`─│┌┐└┘├┤┬┴┼",
+  // 편집기에서 리포트 파일 열었을 때 자동 줄바꿈 (표 확인용)
+  "[markdown]": { "editor.wordWrap": "off" }
+}

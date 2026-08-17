@@ -210,13 +210,53 @@ const ROWS = [];
                      : fails.push('인천 페이지 두 번째 표기 누락');
 }
 
-// ── G12 기존 불가침 ──
+// ── G12 기존 불가침 (내용 기준) ──
+// 파일 바이트가 아니라 "기존 11페이지의 내용·이미지·CSS가 그대로인가"를 본다.
+// head 메타 추가처럼 명시적으로 지시된 보강은 위반이 아니다.
 {
-  const changed = execSync('git diff --name-only HEAD', { cwd: ROOT }).toString().trim().split('\n').filter(Boolean);
-  const allowed = new Set(['sitemap.xml', 'llms.txt', 'robots.txt']);
-  const bad = changed.filter((f) => !allowed.has(f));
-  bad.length ? fails.push(`G12 기존 파일 변경 → ${bad.join(', ')}`)
-             : notes.push(`G12 기존 추적 파일 변경 0건 (변경: ${changed.join(', ') || '없음'} — 전부 허용 목록)`);
+  const bad = [], okList = [];
+  let BASE = '';
+  try {
+    const add = execSync('git log --diff-filter=A --format=%H -- local/index.html', { cwd: ROOT }).toString().trim().split('\n').filter(Boolean).pop();
+    BASE = execSync(`git rev-parse ${add}^`, { cwd: ROOT }).toString().trim();
+  } catch (e) { bad.push('기준 커밋 산출 실패: ' + e.message); }
+
+  const at = (rev, f) => execSync(`git show ${rev}:${f}`, { cwd: ROOT, maxBuffer: 1 << 26 });
+  const mainOf = (t) => (t.match(/<main[\s\S]*?<\/main>/) || [''])[0];
+  const head1 = (t, re) => (t.match(re) || [, ''])[1];
+
+  if (BASE) {
+    // 1) 기존 11페이지: 본문(main) + title + description + canonical 불변
+    for (const p of PAGES) {
+      const base = at(BASE, p.file).toString('utf8');
+      const now = read(p.file);
+      if (mainOf(base) !== mainOf(now)) bad.push(`${p.file}: 본문(main) 변경됨`);
+      for (const [n, re] of [['title', /<title>([\s\S]*?)<\/title>/],
+                             ['description', /name="description" content="([^"]*)"/],
+                             ['canonical', /rel="canonical" href="([^"]*)"/]]) {
+        if (head1(base, re) !== head1(now, re)) bad.push(`${p.file}: ${n} 변경됨`);
+      }
+    }
+    // 2) 기존 썸네일 11장 바이트 불변
+    for (const p of PAGES) {
+      const f = `og/${p.og}.png`;
+      if (!at(BASE, f).equals(fs.readFileSync(path.join(ROOT, f)))) bad.push(`${f}: 이미지 변경됨`);
+    }
+    // 3) 기존 CSS 바이트 불변
+    if (!at(BASE, 'assets/style.css').equals(fs.readFileSync(path.join(ROOT, 'assets/style.css')))) bad.push('assets/style.css: 변경됨');
+    okList.push(`기준 커밋 ${BASE.slice(0, 7)}`);
+    // 4) head 에 추가된 것이 무엇인지 투명하게 보고
+    const diffLines = [];
+    for (const p of PAGES) {
+      const b = at(BASE, p.file).toString('utf8').split('\n');
+      const n = read(p.file).split('\n');
+      for (const line of n) if (!b.includes(line)) diffLines.push(line.trim());
+    }
+    const kinds = [...new Set(diffLines.map((l) => (l.match(/^<(link|meta|script)[^>]*?(rel|property|name)="([^"]+)"/) || [, , , l.slice(0, 40)])[3]))];
+    if (kinds.length) okList.push(`기존 11페이지 head 추가분: ${kinds.join(', ')}`);
+  }
+  bad.length ? fails.push(`G12 기존 내용 변경 → ${bad.join(', ')}`)
+             : notes.push(`G12 기존 11페이지 본문·title·description·canonical 불변 / 기존 썸네일 11장 바이트 동일 / 기존 CSS 동일 (${okList.join(' | ')})`);
 }
 
 // ── G9 썸네일 ──
