@@ -15,8 +15,8 @@ const esc = (s) => String(s)
 const TAG = { confirmed: ['ok', '교차확인'], conflict: ['mix', '출처 엇갈림'], unknown: ['no', '확인 불가'] };
 
 function head(p) {
-  const url = SITE.origin + p.path;
-  const img = `${SITE.origin}/og/${p.og}.png`;
+  const url = SITE.abs(p.path);
+  const img = SITE.abs(`/og/${p.og}.png`);
   const alt = `${B} ${p.topic}`;
   return `<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -44,17 +44,17 @@ function head(p) {
 <meta name="twitter:image" content="${img}">
 <meta name="thumbnail" content="${img}">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230d0c0e'/%3E%3Crect x='5' y='5' width='22' height='22' fill='none' stroke='%23ff6b1f' stroke-width='3'/%3E%3Crect x='13' y='13' width='6' height='6' fill='%23ff2f86'/%3E%3C/svg%3E">
-<link rel="stylesheet" href="/assets/style.css">`;
+<link rel="stylesheet" href="${SITE.href('/assets/style.css')}">`;
 }
 
 function jsonld(p) {
-  const url = SITE.origin + p.path;
+  const url = SITE.abs(p.path);
   const nightclub = {
     '@context': 'https://schema.org',
     '@type': 'NightClub',
     name: B,
     url,
-    image: `${SITE.origin}/og/${p.og}.png`,
+    image: SITE.abs(`/og/${p.og}.png`),
     description: p.desc,
     address: {
       '@type': 'PostalAddress',
@@ -79,7 +79,7 @@ function jsonld(p) {
       '@context': 'https://schema.org',
       '@type': 'WebSite',
       name: `${B} 전문 안내`,
-      url: SITE.origin + '/',
+      url: SITE.abs('/'),
       inLanguage: 'ko-KR',
       description: `${B} 위치와 방문 정보를 공개 웹 정보만으로 정리한 안내 사이트`,
     });
@@ -93,7 +93,7 @@ function nav(current) {
   const items = PAGES.map((p) => {
     const label = p.path === '/' ? '홈' : p.topic;
     const cur = p.path === current ? ' aria-current="page"' : '';
-    return `<li><a href="${p.path}"${cur}>${esc(label)}</a></li>`;
+    return `<li><a href="${SITE.href(p.path)}"${cur}>${esc(label)}</a></li>`;
   }).join('');
   return `<nav class="topnav" aria-label="페이지 목록"><div class="wrap"><ul>${items}</ul></div></nav>`;
 }
@@ -107,8 +107,7 @@ function factTable() {
 }
 
 function page(p) {
-  const url = SITE.origin + p.path;
-  const img = `/og/${p.og}.png`;
+  const img = SITE.href(`/og/${p.og}.png`);
   const alt = `${B} ${p.topic}`;
 
   const lede = p.intro.map((s) => `<p>${esc(s)}</p>`).join('\n');
@@ -123,7 +122,7 @@ function page(p) {
     .filter((l) => l[0] !== p.path)
     .map(([href, label]) => {
       const t = PAGES.find((x) => x.path === href);
-      return `<li><a href="${href}">${esc(label)}<span>${esc(t ? t.ogSub : '')}</span></a></li>`;
+      return `<li><a href="${SITE.href(href)}">${esc(label)}<span>${esc(t ? t.ogSub : '')}</span></a></li>`;
     })
     .join('');
 
@@ -135,7 +134,7 @@ ${jsonld(p)}
 </head>
 <body>
 <header class="signboard"><div class="wrap sign-in">
-  <a class="sign-mark" href="/"><span class="bulb" aria-hidden="true"></span>SUYU SHAMPOO NIGHT</a>
+  <a class="sign-mark" href="${SITE.href('/')}"><span class="bulb" aria-hidden="true"></span>SUYU SHAMPOO NIGHT</a>
   <span class="sign-note">공개 웹 정보 정리 · 확인일 ${SITE.checkedDate}</span>
 </div></header>
 ${nav(p.path)}
@@ -231,7 +230,7 @@ for (const p of PAGES) {
 
 // sitemap.xml
 const urls = PAGES.map((p) => `  <url>
-    <loc>${SITE.origin}${p.path}</loc>
+    <loc>${SITE.abs(p.path)}</loc>
     <lastmod>${SITE.checkedISO}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>${p.path === '/' ? '1.0' : '0.8'}</priority>
@@ -241,10 +240,10 @@ fs.writeFileSync(path.join(ROOT, 'sitemap.xml'),
 
 // robots.txt
 fs.writeFileSync(path.join(ROOT, 'robots.txt'),
-  `User-agent: *\nAllow: /\n\nUser-agent: Yeti\nAllow: /\n\nUser-agent: Googlebot\nAllow: /\n\nUser-agent: GPTBot\nAllow: /\n\nUser-agent: ClaudeBot\nAllow: /\n\nUser-agent: PerplexityBot\nAllow: /\n\nSitemap: ${SITE.origin}/sitemap.xml\n`, 'utf8');
+  `User-agent: *\nAllow: /\n\nUser-agent: Yeti\nAllow: /\n\nUser-agent: Googlebot\nAllow: /\n\nUser-agent: GPTBot\nAllow: /\n\nUser-agent: ClaudeBot\nAllow: /\n\nUser-agent: PerplexityBot\nAllow: /\n\nSitemap: ${SITE.abs('/sitemap.xml')}\n`, 'utf8');
 
 // llms.txt
-const list = PAGES.map((p) => `- [${p.title}](${SITE.origin}${p.path}): ${p.desc}`).join('\n');
+const list = PAGES.map((p) => `- [${p.title}](${SITE.abs(p.path)}): ${p.desc}`).join('\n');
 fs.writeFileSync(path.join(ROOT, 'llms.txt'),
   `# ${B}\n\n> ${B} 전문 안내 사이트입니다. 서울특별시 강북구 도봉로 308(번동 449-1), 4호선 수유(강북구청)역 4번 출구 인근에 위치한 ${B}의 위치·방문 정보를 공개된 웹 정보만 교차 확인해 정리했습니다. 확인되지 않은 요금·영업시간·평점은 싣지 않습니다.\n\n## 페이지 (11)\n\n${list}\n\n## 참고\n\n- 확인일: ${SITE.checkedDate}\n- 문의: 카카오톡 오픈채팅 ${SITE.kakaoId}\n- 확인 불가 항목: 요금, 영업시간, 좌석 규모, 연령 분포\n- 출처 엇갈림 항목: 주차 운영 방식\n`, 'utf8');
 

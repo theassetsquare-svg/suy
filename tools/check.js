@@ -109,12 +109,13 @@ const allFiles = [
 
 // ── G7 내부링크 404 ──
 {
-  const valid = new Set(PAGES.map((p) => p.path));
+  const valid = new Set(PAGES.map((p) => SITE.href(p.path)));
+  const skip = [SITE.href('/og/'), SITE.href('/assets/')];
   const bad = [];
   for (const f of files) {
     const hrefs = [...f.html.matchAll(/href="(\/[^"]*)"/g)].map((m) => m[1]);
     for (const h of hrefs) {
-      if (h.startsWith('/og/') || h.startsWith('/assets/') || h.startsWith('/data:')) continue;
+      if (skip.some((k) => h.startsWith(k))) continue;
       if (!valid.has(h)) bad.push(`${f.p.path} → ${h}`);
     }
   }
@@ -220,12 +221,13 @@ const allFiles = [
     const meta = await sharp(file).metadata();
     if (meta.width !== 1200 || meta.height !== 1200) bad.push(`${f.p.path}: ${meta.width}×${meta.height}`);
     if (st.size > 300 * 1024) bad.push(`${f.p.path}: ${(st.size / 1024).toFixed(1)}KB > 300KB`);
-    if (!f.html.includes(`<img src="/og/${f.p.og}.png"`)) bad.push(`${f.p.path}: 본문 img 없음`);
-    const altM = f.html.match(/<img src="\/og\/[^"]+" alt="([^"]*)"/);
+    const imgSrc = SITE.href(`/og/${f.p.og}.png`);
+    if (!f.html.includes(`<img src="${imgSrc}"`)) bad.push(`${f.p.path}: 본문 img 없음`);
+    const altM = f.html.match(/<img src="[^"]*\/og\/[^"]+" alt="([^"]*)"/);
     if (!altM || !altM[1].includes(B)) bad.push(`${f.p.path}: 본문 img alt에 가게이름 없음`);
     for (const s of need9) if (!f.html.includes(s)) bad.push(`${f.p.path}: 메타 누락 ${s}`);
     const r = rows.find((x) => x.페이지 === f.p.path);
-    if (r) { r['썸네일'] = `${meta.width}×${meta.height} / ${(st.size / 1024).toFixed(1)}KB`; r['본문img'] = f.html.includes(`<img src="/og/${f.p.og}.png"`) ? 'O' : 'X'; }
+    if (r) { r['썸네일'] = `${meta.width}×${meta.height} / ${(st.size / 1024).toFixed(1)}KB`; r['본문img'] = f.html.includes(`<img src="${imgSrc}"`) ? 'O' : 'X'; }
   }
   bad.length ? fails.push(`G9 썸네일 → ${bad.join(', ')}`) : notes.push('G9 썸네일 11장 1200×1200·300KB 이하·본문 img·메타 9종·alt 가게이름 완비');
 

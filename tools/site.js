@@ -2,8 +2,11 @@
 'use strict';
 
 const SITE = {
-  // 실제 라이브 도메인. Cloudflare Pages 연결 후에는 이 한 줄만 바꾸고 `npm run build` 재실행.
+  // 실제 라이브 도메인 + 경로 접두사.
+  // GitHub Pages 프로젝트 사이트(repo: suy) → origin + base = https://theassetsquare-svg.github.io/suy
+  // Cloudflare Pages 연결 시 → origin:'https://suy.pages.dev', base:'' 로 바꾸고 `npm run all` 재실행.
   origin: 'https://theassetsquare-svg.github.io',
+  base: '/suy',
   brand: '수유샴푸나이트',
   kakao: 'https://open.kakao.com/o/sBesta12',
   kakaoId: 'besta12',
@@ -30,5 +33,9 @@ const FACT_ROWS = [
   FACTS.landmark, FACTS.age, FACTS.parking, FACTS.hours,
   { label: '확인일', value: SITE.checkedDate, status: 'confirmed' },
 ];
+
+// 사이트 내부 경로 → 실제 서빙 경로 / 절대 URL
+SITE.href = (p) => (SITE.base + p).replace(/\/{2,}/g, '/') || '/';
+SITE.abs = (p) => SITE.origin + SITE.href(p);
 
 module.exports = { SITE, FACTS, FACT_ROWS };
