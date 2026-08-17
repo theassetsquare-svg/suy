@@ -21,7 +21,7 @@ function head(p) {
   return `<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="google-site-verification" content="${SITE.gsv}">
-<!-- naver-site-verification: 발급 후 삽입 -->
+<meta name="naver-site-verification" content="${SITE.nsv}" />
 <title>${esc(p.title)}</title>
 <meta name="description" content="${esc(p.desc)}">
 <link rel="canonical" href="${url}">

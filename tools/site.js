@@ -10,6 +10,7 @@ const SITE = {
   kakao: 'https://open.kakao.com/o/sBesta12',
   kakaoId: 'besta12',
   gsv: 'HJjm7MRxykCQ7d_9L7glaTeeaWrmJIzAKY0BcNcfm88',
+  nsv: '284e96dc54d89837007bb8206b6581f6b2fc61e5',
   checkedDate: '2026년 8월 17일',
   checkedISO: '2026-08-17',
 };

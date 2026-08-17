@@ -140,7 +140,7 @@ const allFiles = [
 {
   const need = [
     ['google-site-verification', (h) => h.includes(`content="${SITE.gsv}"`)],
-    ['naver 주석 자리', (h) => h.includes('<!-- naver-site-verification: 발급 후 삽입 -->')],
+    ['naver-site-verification', (h) => h.includes(`<meta name="naver-site-verification" content="${SITE.nsv}" />`)],
     ['canonical', (h) => /<link rel="canonical" href="https:\/\/[^"]+">/.test(h)],
     ['viewport', (h) => h.includes('name="viewport"')],
     ['JSON-LD NightClub', (h) => h.includes('"@type":"NightClub"')],
