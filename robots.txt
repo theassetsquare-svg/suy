@@ -16,4 +16,4 @@ Allow: /
 User-agent: PerplexityBot
 Allow: /
 
-Sitemap: https://theassetsquare-svg.github.io/suy/sitemap.xml
+Sitemap: https://suy-e7e.pages.dev/sitemap.xml

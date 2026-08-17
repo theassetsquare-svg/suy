@@ -2,11 +2,10 @@
 'use strict';
 
 const SITE = {
-  // 실제 라이브 도메인 + 경로 접두사.
-  // GitHub Pages 프로젝트 사이트(repo: suy) → origin + base = https://theassetsquare-svg.github.io/suy
-  // Cloudflare Pages 연결 시 → origin:'https://suy.pages.dev', base:'' 로 바꾸고 `npm run all` 재실행.
-  origin: 'https://theassetsquare-svg.github.io',
-  base: '/suy',
+  // 실제 라이브 도메인 (Cloudflare Pages, 루트 서빙).
+  // 커스텀 도메인 연결 시 이 두 줄만 바꾸고 `npm run all` 재실행.
+  origin: 'https://suy-e7e.pages.dev',
+  base: '',
   brand: '수유샴푸나이트',
   kakao: 'https://open.kakao.com/o/sBesta12',
   kakaoId: 'besta12',
