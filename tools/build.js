@@ -43,6 +43,7 @@ function head(p) {
 <meta name="twitter:description" content="${esc(p.desc)}">
 <meta name="twitter:image" content="${img}">
 <meta name="thumbnail" content="${img}">
+<link rel="image_src" href="${img}">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230d0c0e'/%3E%3Crect x='5' y='5' width='22' height='22' fill='none' stroke='%23ff6b1f' stroke-width='3'/%3E%3Crect x='13' y='13' width='6' height='6' fill='%23ff2f86'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="${SITE.href('/assets/style.css')}">`;
 }
