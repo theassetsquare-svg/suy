@@ -152,14 +152,14 @@ const allFiles = [
     ['og:image', (h) => h.includes('property="og:image"')],
   ];
   // 홈(/)은 독립 성공스토리 단독 페이지 → 고정 바·푸터·FAQ 스키마가 없는 것이 정상
-  const homeSkip = new Set(['JSON-LD FAQPage', '하단 고정 바', '푸터 광고문의 박스', '푸터 고지문', '푸터 확인일']);
+  const homeSkip = new Set(['JSON-LD NightClub', 'JSON-LD FAQPage', '하단 고정 바', '푸터 광고문의 박스', '푸터 고지문', '푸터 확인일']);
   const bad = [];
   for (const f of files) for (const [n, fn] of need) {
     if (f.p.path === '/' && homeSkip.has(n)) continue;
     if (!fn(f.html)) bad.push(`${f.p.path}: ${n}`);
   }
   if (!files[0].html.includes('"@type":"WebSite"')) bad.push('/: JSON-LD WebSite');
-  bad.length ? fails.push(`G8 필수 요소 누락 → ${bad.join(', ')}`) : notes.push('G8 인증·canonical·JSON-LD·고정 바·푸터·og:image 완비 (홈은 단독 페이지 예외 5항목)');
+  bad.length ? fails.push(`G8 필수 요소 누락 → ${bad.join(', ')}`) : notes.push('G8 인증·canonical·JSON-LD·고정 바·푸터·og:image 완비 (홈은 단독 페이지 예외 6항목)');
 }
 
 // ── G10 전화번호 ──
@@ -191,14 +191,17 @@ const allFiles = [
     const st = (body.match(/수유역/g) || []).length;
 
     const errs = [];
-    if (!title.startsWith(B)) errs.push('title 맨 앞');
-    if (p.path !== '/' && !firstSent.includes(B)) errs.push('첫 문단 첫 문장');
-    if (!h2s.some((h) => h.includes(B))) errs.push('H2');
-    if (n < 3 || n > 5) errs.push(`본문 횟수 ${n}회(3~5 아님)`);
-    if (!desc.includes(B)) errs.push('description');
-    if (!alt.includes(B)) errs.push('og:image:alt');
-    if (!ld) errs.push('JSON-LD name');
-    if (sub < 1) errs.push('보조 수유나이트 0회');
+    const isHome = p.path === '/';   // 홈은 가게 이름을 쓰지 않는 독립 스토리 → 키워드 배치 규칙 미적용
+    if (!isHome) {
+      if (!title.startsWith(B)) errs.push('title 맨 앞');
+      if (!firstSent.includes(B)) errs.push('첫 문단 첫 문장');
+      if (!h2s.some((h) => h.includes(B))) errs.push('H2');
+      if (n < 3 || n > 5) errs.push(`본문 횟수 ${n}회(3~5 아님)`);
+      if (!desc.includes(B)) errs.push('description');
+      if (!alt.includes(B)) errs.push('og:image:alt');
+      if (!ld) errs.push('JSON-LD name');
+      if (sub < 1) errs.push('보조 수유나이트 0회');
+    }
     if (gb < 1) errs.push('강북 0회');
     if (st < 1) errs.push('수유역 0회');
 
@@ -251,8 +254,10 @@ const allFiles = [
     if (/<img/.test(main)) errs.push('본문 이미지 존재');
     const n = mainText(h).length;
     if (n < 2000) errs.push(`본문 ${n}자 < 2,000자`);
+    const brandHits = (h.match(/나이트/g) || []).length;
+    if (brandHits) errs.push(`'나이트' ${brandHits}건 (홈은 0건이어야 함)`);
     errs.length ? fails.push(`G12 홈 단독 스토리 위반 → ${errs.join(', ')}`)
-                : notes.push(`G12 홈 단독 스토리: 헤더·내비·푸터·고정바·본문링크·이미지 0 / 본문 ${n}자`);
+                : notes.push(`G12 홈 단독 스토리: 헤더·내비·푸터·고정바·본문링크·이미지 0 / '나이트' 0건 / 본문 ${n}자`);
   }
 
   console.table(rows);

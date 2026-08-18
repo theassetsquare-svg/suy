@@ -19,7 +19,10 @@ const TAG = { confirmed: ['ok', '교차확인'], conflict: ['mix', '출처 엇�
 function head(p) {
   const url = SITE.abs(p.path);
   const img = SITE.abs(`/og/${p.og}.png`);
-  const alt = `${B} ${p.topic}`;
+  // 홈(/)은 독립 스토리 페이지 → 가게 이름을 노출하는 텍스트를 쓰지 않는다
+  const isHome = p.path === '/';
+  const alt = isHome ? HOME.imgAlt : `${B} ${p.topic}`;
+  const siteName = isHome ? HOME.siteName : `${B} 안내`;
   return `<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="google-site-verification" content="${SITE.gsv}">
@@ -29,7 +32,7 @@ function head(p) {
 <link rel="canonical" href="${url}">
 <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="${B} 안내">
+<meta property="og:site_name" content="${esc(siteName)}">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:title" content="${esc(p.title)}">
 <meta property="og:description" content="${esc(p.desc)}">
@@ -76,7 +79,7 @@ function jsonld(p) {
       acceptedAnswer: { '@type': 'Answer', text: f.a },
     })),
   };
-  const blocks = p.path === '/' ? [nightclub] : [nightclub, faq];
+  const blocks = p.path === '/' ? [] : [nightclub, faq];
   if (p.path === '/') {
     blocks.push({
       '@context': 'https://schema.org',
@@ -91,10 +94,10 @@ function jsonld(p) {
     blocks.push({
       '@context': 'https://schema.org',
       '@type': 'WebSite',
-      name: `${B} 전문 안내`,
+      name: HOME.siteName,
       url: SITE.abs('/'),
       inLanguage: 'ko-KR',
-      description: `${B} 위치와 방문 정보를 공개 웹 정보만으로 정리한 안내 사이트`,
+      description: p.desc,
     });
   }
   return blocks
