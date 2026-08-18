@@ -227,8 +227,14 @@ const ROWS = [];
 
   if (BASE) {
     // 1) 기존 11페이지: 본문(main) + title + description + canonical 불변
+    // 예외: 홈(index.html)은 사용자 지시로 독립 성공스토리 단독 페이지로 교체됨 → 본문·title·description 비교 제외.
+    //       나머지 10페이지는 '이어서 읽기'의 홈 링크 부제만 홈 교체에 따라 바뀌므로 그 문구만 정규화 후 비교.
+    const HOME_SUB_OLD = '강북의 밤이 시작되는 이름';
+    const HOME_SUB_NEW = PAGES.find((x) => x.path === '/').ogSub;
     for (const p of PAGES) {
-      const base = at(BASE, p.file).toString('utf8');
+      const isHome = p.path === '/';
+      if (isHome) { okList.push('홈(index.html)은 성공스토리 교체분으로 비교 제외'); continue; }
+      const base = at(BASE, p.file).toString('utf8').split(HOME_SUB_OLD).join(HOME_SUB_NEW);
       const now = read(p.file);
       if (mainOf(base) !== mainOf(now)) bad.push(`${p.file}: 본문(main) 변경됨`);
       for (const [n, re] of [['title', /<title>([\s\S]*?)<\/title>/],
@@ -236,6 +242,12 @@ const ROWS = [];
                              ['canonical', /rel="canonical" href="([^"]*)"/]]) {
         if (head1(base, re) !== head1(now, re)) bad.push(`${p.file}: ${n} 변경됨`);
       }
+    }
+    // 홈은 canonical 만 여전히 불변이어야 한다
+    {
+      const h = PAGES.find((x) => x.path === '/');
+      const re = /rel="canonical" href="([^"]*)"/;
+      if (head1(at(BASE, h.file).toString('utf8'), re) !== head1(read(h.file), re)) bad.push(`${h.file}: canonical 변경됨`);
     }
     // 2) 기존 썸네일 11장 바이트 불변
     for (const p of PAGES) {
@@ -256,7 +268,7 @@ const ROWS = [];
     if (kinds.length) okList.push(`기존 11페이지 head 추가분: ${kinds.join(', ')}`);
   }
   bad.length ? fails.push(`G12 기존 내용 변경 → ${bad.join(', ')}`)
-             : notes.push(`G12 기존 11페이지 본문·title·description·canonical 불변 / 기존 썸네일 11장 바이트 동일 / 기존 CSS 동일 (${okList.join(' | ')})`);
+             : notes.push(`G12 기존 10페이지 본문·title·description·canonical 불변 (홈 제외, 홈 canonical 불변) / 기존 썸네일 11장 바이트 동일 / 기존 CSS 동일 (${okList.join(' | ')})`);
 }
 
 // ── G9 썸네일 ──
