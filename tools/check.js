@@ -110,7 +110,7 @@ const allFiles = [
 // ── G7 내부링크 404 ──
 {
   const valid = new Set(PAGES.map((p) => SITE.href(p.path)));
-  const skip = [SITE.href('/og/'), SITE.href('/assets/')];
+  const skip = [SITE.href('/og/'), SITE.href('/assets/'), SITE.href('/rss.xml')];
   const bad = [];
   for (const f of files) {
     const hrefs = [...f.html.matchAll(/href="(\/[^"]*)"/g)].map((m) => m[1]);

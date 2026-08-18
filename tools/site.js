@@ -13,6 +13,8 @@ const SITE = {
   nsv: '284e96dc54d89837007bb8206b6581f6b2fc61e5',
   checkedDate: '2026년 8월 17일',
   checkedISO: '2026-08-17',
+  // 사이트맵·RSS 신선도 신호 전용(본문 '확인일' 표기와 분리)
+  updatedISO: '2026-08-18',
 };
 
 // 웹 교차검증 결과. status: confirmed(2개 이상 출처 일치) / conflict(엇갈림) / unknown(확인 불가)

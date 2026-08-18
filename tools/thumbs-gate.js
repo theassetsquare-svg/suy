@@ -6,7 +6,7 @@ const ROOT=path.join(__dirname,'..');
 function walk(d,acc=[]){for(const e of fs.readdirSync(d,{withFileTypes:true})){
   if(['node_modules','.git','tools','og','assets'].includes(e.name))continue;
   const p=path.join(d,e.name);
-  if(e.isDirectory())walk(p,acc); else if(e.name.endsWith('.html'))acc.push(path.relative(ROOT,p));
+  if(e.isDirectory())walk(p,acc); else if(e.name.endsWith('.html')&&e.name!=='404.html')acc.push(path.relative(ROOT,p));
 }return acc;}
 const META=[
  ['og:image', h=>/property="og:image" content="https:\/\/[^"]+\.png"/.test(h)],

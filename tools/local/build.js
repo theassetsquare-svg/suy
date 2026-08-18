@@ -51,6 +51,7 @@ function head(p, { alt }) {
 <meta name="thumbnail" content="${img}">
 <link rel="image_src" href="${img}">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230d0c0e'/%3E%3Cpath d='M16 4a8 8 0 0 0-8 8c0 6 8 16 8 16s8-10 8-16a8 8 0 0 0-8-8z' fill='%23ff2f86'/%3E%3Ccircle cx='16' cy='12' r='3' fill='%230d0c0e'/%3E%3C/svg%3E">
+<link rel="alternate" type="application/rss+xml" title="${SITE.brand} 안내 RSS" href="${SITE.href('/rss.xml')}">
 <link rel="stylesheet" href="${SITE.href('/assets/style.css')}">
 <link rel="stylesheet" href="${SITE.href('/assets/local.css')}">`;
 }
@@ -69,7 +70,15 @@ function jsonld(v) {
     '@context': 'https://schema.org', '@type': 'FAQPage',
     mainEntity: v.faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
   };
-  return [nightclub, faq].map((b) => `<script type="application/ld+json">${JSON.stringify(b)}</script>`).join('\n');
+  // 검색엔진이 계층을 이해하도록 목록 → 개별 가게 경로를 명시
+  const crumbs = {
+    '@context': 'https://schema.org', '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: '전국 나이트 동네 안내', item: SITE.abs('/local/') },
+      { '@type': 'ListItem', position: 2, name: v.name, item: SITE.abs(v.path) },
+    ],
+  };
+  return [nightclub, faq, crumbs].map((b) => `<script type="application/ld+json">${JSON.stringify(b)}</script>`).join('\n');
 }
 
 function header(current) {
@@ -302,7 +311,7 @@ const all = [
 ];
 fs.writeFileSync(path.join(ROOT, 'sitemap.xml'),
   `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
-  all.map((u) => `  <url>\n    <loc>${SITE.abs(u.path)}</loc>\n    <lastmod>${SITE.checkedISO}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>${u.pri}</priority>\n  </url>`).join('\n') +
+  all.map((u) => `  <url>\n    <loc>${SITE.abs(u.path)}</loc>\n    <lastmod>${SITE.updatedISO}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>${u.pri}</priority>\n  </url>`).join('\n') +
   `\n</urlset>\n`, 'utf8');
 
 // llms.txt — 기존 11 + 신규 40

@@ -5,9 +5,10 @@
   "main": "index.js",
   "scripts": {
     "og": "node tools/build-og.js",
-    "build": "node tools/build.js",
+    "build": "node tools/build.js && node tools/local/build.js && node tools/rss.js",
     "check": "node tools/check.js",
-    "all": "npm run og && npm run build && npm run check"
+    "all": "npm run og && npm run build && npm run check && node tools/local/check.js && node tools/thumbs-gate.js",
+    "rss": "node tools/rss.js"
   },
   "keywords": [],
   "author": "",

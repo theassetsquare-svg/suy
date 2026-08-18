@@ -104,7 +104,7 @@ const CHARS = {};
 // ── G7 내부링크 404 / 외부링크 화이트리스트 ──
 {
   const valid = new Set([...PAGES.map((p) => SITE.href(p.path)), SITE.href('/local/'), ...VENUES.map((v) => SITE.href(v.path))]);
-  const skip = [SITE.href('/og/'), SITE.href('/assets/')];
+  const skip = [SITE.href('/og/'), SITE.href('/assets/'), SITE.href('/rss.xml')];
   const bad = [], ext = [];
   for (const f of NEW_HTML) {
     const h = read(f);
