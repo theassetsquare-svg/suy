@@ -2,6 +2,8 @@
 // 규칙: 페이지 간 문장 재사용 금지(사실 표 제외), 창작 수치 0, 확인된 사실만 단정.
 'use strict';
 
+const { HOME } = require('./home');
+
 const PAGES = [
   /* 1 ─────────────────────────────────────────── */
   {
@@ -806,5 +808,15 @@ const PAGES = [
     links: [['/first/', '문 앞에서 갈리는 것'], ['/faq/', '남은 질문 정리']],
   },
 ];
+
+// 홈(/)은 독립 성공스토리 단독 페이지 — 메타·리드를 스토리 원고로 통일
+{
+  const h = PAGES.find((p) => p.path === '/');
+  h.title = HOME.title;
+  h.desc = HOME.desc;
+  h.topic = '성공스토리';
+  h.ogSub = '새벽 4시의 기록';
+  h.intro = HOME.lede;
+}
 
 module.exports = { PAGES };

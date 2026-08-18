@@ -29,8 +29,9 @@ for(const f of files){
   const imM=h.match(/<img src="([^"]*\/og\/[^"]+)"[^>]*>/);
   const ogFile=ogM?ogM[1].split('/').pop():null;
   const imFile=imM?imM[1].split('/').pop():null;
-  // ① 본문 img 존재
-  if(!imM) errs.push('본문 img 없음');
+  const isHome = f === 'index.html';   // 홈은 글만 노출하는 단독 스토리 페이지
+  // ① 본문 img 존재 (홈 예외)
+  if(!imM && !isHome) errs.push('본문 img 없음');
   // ② og:image = 본문 img 동일 파일
   if(ogFile&&imFile&&ogFile!==imFile) errs.push('og:image≠본문img');
   // ③ 메타 9종
@@ -47,8 +48,10 @@ for(const f of files){
   const alt=imM?(imM[0].match(/alt="([^"]*)"/)||[,''])[1]:'';
   const nameM=h.match(/"@type":"NightClub","name":"([^"]+)"/);
   const name=nameM?nameM[1]:null;
-  if(name&&!alt.includes(name)) errs.push('img alt 가게이름 없음');
-  if(!name&&!alt) errs.push('img alt 비어있음');
+  if(!isHome){
+    if(name&&!alt.includes(name)) errs.push('img alt 가게이름 없음');
+    if(!name&&!alt) errs.push('img alt 비어있음');
+  }
   // 추가: 절대 URL / img 속성
   if(imM&&!/width="1200"/.test(imM[0])) errs.push('img width 속성');
   if(imM&&!/height="1200"/.test(imM[0])) errs.push('img height 속성');

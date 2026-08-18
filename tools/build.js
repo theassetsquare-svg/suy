@@ -5,9 +5,11 @@ const fs = require('fs');
 const path = require('path');
 const { SITE, FACT_ROWS } = require('./site');
 const { PAGES } = require('./content');
+const { HOME } = require('./home');
 
 const ROOT = path.join(__dirname, '..');
 const B = SITE.brand;
+
 
 const esc = (s) => String(s)
   .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -74,8 +76,18 @@ function jsonld(p) {
       acceptedAnswer: { '@type': 'Answer', text: f.a },
     })),
   };
-  const blocks = [nightclub, faq];
+  const blocks = p.path === '/' ? [nightclub] : [nightclub, faq];
   if (p.path === '/') {
+    blocks.push({
+      '@context': 'https://schema.org',
+      '@type': 'Article',
+      headline: HOME.h1,
+      description: p.desc,
+      inLanguage: 'ko-KR',
+      articleSection: '성공스토리',
+      mainEntityOfPage: SITE.abs('/'),
+      image: SITE.abs(`/og/${p.og}.png`),
+    });
     blocks.push({
       '@context': 'https://schema.org',
       '@type': 'WebSite',
@@ -105,6 +117,80 @@ function factTable() {
     return `<tr><th scope="row">${esc(r.label)}</th><td>${esc(r.value)}<span class="tag ${cls}">${txt}</span></td></tr>`;
   }).join('');
   return `<div class="fact-wrap"><table class="facts"><caption>공개 웹 정보 교차 확인표</caption><tbody>${rows}</tbody></table></div>`;
+}
+
+
+// ── 홈: 독립 성공스토리 단독 페이지 ──────────────────
+// 헤더/내비/푸터/고정 통화바/이미지/내부링크 없음. 본문 글만 노출.
+function homePage(p) {
+  const secs = HOME.sections
+    .map((s) => `<section>\n    <h2>${esc(s.h)}</h2>\n${s.p.map((t) => `    <p>${esc(t)}</p>`).join('\n')}\n  </section>`)
+    .join('\n\n  ');
+
+  return `<!doctype html>
+<html lang="ko">
+<head>
+${head(p)}
+${jsonld(p)}
+<style>
+:root{--ink:#0d0c0e;--txt:#f4efe9;--txt-2:#b6aca6;--txt-3:#8a807c;--orange:#ff6b1f;--pink:#ff2f86;--line:#2c2530;
+  --kr:"Pretendard","Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",system-ui,sans-serif;}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--ink);color:var(--txt);font-family:var(--kr);font-size:18px;line-height:2;
+  letter-spacing:-.01em;word-break:keep-all;
+  background-image:radial-gradient(120% 55% at 50% -10%,rgba(255,107,31,.13),transparent 60%),
+                   radial-gradient(90% 45% at 100% 0%,rgba(255,47,134,.08),transparent 60%);
+  background-attachment:fixed;}
+.page{max-width:720px;margin:0 auto;padding:clamp(38px,8vw,84px) 20px clamp(56px,10vw,96px)}
+h1{font-size:clamp(27px,6.2vw,40px);line-height:1.35;letter-spacing:-.03em;margin:0 0 22px;font-weight:800}
+.rule{height:3px;width:74px;margin:0 0 30px;background:linear-gradient(90deg,var(--orange),var(--pink));border-radius:3px}
+.lede p{font-size:clamp(18px,4.3vw,21px);line-height:1.95;color:#ffe9dc;margin:0 0 14px;font-weight:600}
+section{margin:44px 0 0}
+h2{font-size:clamp(20px,4.6vw,25px);line-height:1.45;letter-spacing:-.02em;margin:0 0 16px;font-weight:800;
+  padding-left:14px;border-left:4px solid var(--orange)}
+p{margin:0 0 18px}
+.quote{margin:46px 0;padding:24px 22px;border-left:4px solid var(--pink);background:rgba(255,47,134,.06);
+  border-radius:0 12px 12px 0;font-size:clamp(19px,4.5vw,23px);line-height:1.75;font-weight:700;color:#ffd9e8}
+.rules{margin:46px 0 0;padding:26px 22px 10px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.025)}
+.rules h2{border-left:none;padding-left:0;margin-bottom:18px}
+.rules ol{margin:0;padding-left:22px}
+.rules li{margin:0 0 14px;padding-left:4px}
+.rules li::marker{color:var(--orange);font-weight:800}
+.close{margin:48px 0 0}
+.close p:last-child{color:#ffd7bd;font-weight:700}
+.note{margin:44px 0 0;padding-top:20px;border-top:1px solid var(--line);font-size:15px;line-height:1.85;color:var(--txt-3)}
+@media (max-width:480px){body{font-size:17px;line-height:1.95}}
+</style>
+</head>
+<body>
+<main class="page">
+  <h1>${esc(HOME.h1)}</h1>
+  <div class="rule" aria-hidden="true"></div>
+
+  <div class="lede">
+${HOME.lede.map((t) => `    <p>${esc(t)}</p>`).join('\n')}
+  </div>
+
+  ${secs}
+
+  <blockquote class="quote">${esc(HOME.quote)}</blockquote>
+
+  <div class="rules">
+    <h2>${esc(HOME.rulesH)}</h2>
+    <ol>${HOME.rules.map((t) => `<li>${esc(t)}</li>`).join('')}</ol>
+  </div>
+
+  <section class="close">
+    <h2>${esc(HOME.closeH)}</h2>
+${HOME.close.map((t) => `    <p>${esc(t)}</p>`).join('\n')}
+  </section>
+
+  <p class="note">${esc(HOME.note)}</p>
+</main>
+</body>
+</html>
+`;
 }
 
 function page(p) {
@@ -226,7 +312,7 @@ document.querySelectorAll('button.copy').forEach(function(b){
 for (const p of PAGES) {
   const out = path.join(ROOT, p.file);
   fs.mkdirSync(path.dirname(out), { recursive: true });
-  fs.writeFileSync(out, page(p), 'utf8');
+  fs.writeFileSync(out, p.path === '/' ? homePage(p) : page(p), 'utf8');
 }
 
 // sitemap.xml

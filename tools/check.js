@@ -1,4 +1,4 @@
-// 배포 게이트 G1~G11. 하나라도 실패하면 exit 1.
+// 배포 게이트 G1~G12. 하나라도 실패하면 exit 1.
 'use strict';
 
 const fs = require('fs');
@@ -151,10 +151,15 @@ const allFiles = [
     ['푸터 확인일', (h) => h.includes(SITE.checkedDate)],
     ['og:image', (h) => h.includes('property="og:image"')],
   ];
+  // 홈(/)은 독립 성공스토리 단독 페이지 → 고정 바·푸터·FAQ 스키마가 없는 것이 정상
+  const homeSkip = new Set(['JSON-LD FAQPage', '하단 고정 바', '푸터 광고문의 박스', '푸터 고지문', '푸터 확인일']);
   const bad = [];
-  for (const f of files) for (const [n, fn] of need) if (!fn(f.html)) bad.push(`${f.p.path}: ${n}`);
+  for (const f of files) for (const [n, fn] of need) {
+    if (f.p.path === '/' && homeSkip.has(n)) continue;
+    if (!fn(f.html)) bad.push(`${f.p.path}: ${n}`);
+  }
   if (!files[0].html.includes('"@type":"WebSite"')) bad.push('/: JSON-LD WebSite');
-  bad.length ? fails.push(`G8 필수 요소 누락 → ${bad.join(', ')}`) : notes.push('G8 인증·canonical·JSON-LD·고정 바·푸터·og:image 전 페이지 완비');
+  bad.length ? fails.push(`G8 필수 요소 누락 → ${bad.join(', ')}`) : notes.push('G8 인증·canonical·JSON-LD·고정 바·푸터·og:image 완비 (홈은 단독 페이지 예외 5항목)');
 }
 
 // ── G10 전화번호 ──
@@ -187,7 +192,7 @@ const allFiles = [
 
     const errs = [];
     if (!title.startsWith(B)) errs.push('title 맨 앞');
-    if (!firstSent.includes(B)) errs.push('첫 문단 첫 문장');
+    if (p.path !== '/' && !firstSent.includes(B)) errs.push('첫 문단 첫 문장');
     if (!h2s.some((h) => h.includes(B))) errs.push('H2');
     if (n < 3 || n > 5) errs.push(`본문 횟수 ${n}회(3~5 아님)`);
     if (!desc.includes(B)) errs.push('description');
@@ -222,14 +227,33 @@ const allFiles = [
     if (meta.width !== 1200 || meta.height !== 1200) bad.push(`${f.p.path}: ${meta.width}×${meta.height}`);
     if (st.size > 300 * 1024) bad.push(`${f.p.path}: ${(st.size / 1024).toFixed(1)}KB > 300KB`);
     const imgSrc = SITE.href(`/og/${f.p.og}.png`);
-    if (!f.html.includes(`<img src="${imgSrc}"`)) bad.push(`${f.p.path}: 본문 img 없음`);
-    const altM = f.html.match(/<img src="[^"]*\/og\/[^"]+" alt="([^"]*)"/);
-    if (!altM || !altM[1].includes(B)) bad.push(`${f.p.path}: 본문 img alt에 가게이름 없음`);
+    if (f.p.path !== '/') {
+      if (!f.html.includes(`<img src="${imgSrc}"`)) bad.push(`${f.p.path}: 본문 img 없음`);
+      const altM = f.html.match(/<img src="[^"]*\/og\/[^"]+" alt="([^"]*)"/);
+      if (!altM || !altM[1].includes(B)) bad.push(`${f.p.path}: 본문 img alt에 가게이름 없음`);
+    }
     for (const s of need9) if (!f.html.includes(s)) bad.push(`${f.p.path}: 메타 누락 ${s}`);
     const r = rows.find((x) => x.페이지 === f.p.path);
     if (r) { r['썸네일'] = `${meta.width}×${meta.height} / ${(st.size / 1024).toFixed(1)}KB`; r['본문img'] = f.html.includes(`<img src="${imgSrc}"`) ? 'O' : 'X'; }
   }
   bad.length ? fails.push(`G9 썸네일 → ${bad.join(', ')}`) : notes.push('G9 썸네일 11장 1200×1200·300KB 이하·본문 img·메타 9종·alt 가게이름 완비');
+
+  // ── G12 홈 단독 스토리 페이지 불변식 ──
+  {
+    const h = files.find((f) => f.p.path === '/').html;
+    const main = (h.match(/<main[\s\S]*?<\/main>/) || [''])[0];
+    const errs = [];
+    if (/<header/.test(h)) errs.push('헤더 존재');
+    if (/<footer/.test(h)) errs.push('푸터 존재');
+    if (/<nav/.test(h)) errs.push('내비 존재');
+    if (/class="fixbar"/.test(h)) errs.push('고정 통화바 존재');
+    if (/<a\s/.test(main)) errs.push('본문 링크 존재');
+    if (/<img/.test(main)) errs.push('본문 이미지 존재');
+    const n = mainText(h).length;
+    if (n < 2000) errs.push(`본문 ${n}자 < 2,000자`);
+    errs.length ? fails.push(`G12 홈 단독 스토리 위반 → ${errs.join(', ')}`)
+                : notes.push(`G12 홈 단독 스토리: 헤더·내비·푸터·고정바·본문링크·이미지 0 / 본문 ${n}자`);
+  }
 
   console.table(rows);
   console.log('\n── 통과 내역 ──');
@@ -239,5 +263,5 @@ const allFiles = [
     fails.forEach((f) => console.log('  ✘ ' + f));
     process.exit(1);
   }
-  console.log('\n✅ G1~G11 전부 통과 — 배포 가능');
+  console.log('\n✅ G1~G12 전부 통과 — 배포 가능');
 })();
