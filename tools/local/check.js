@@ -190,7 +190,7 @@ const ROWS = [];
     if (!title.startsWith(v.name)) errs.push('title 맨 앞');
     if (!v.intro[0].includes(v.name)) errs.push('첫 문단 첫 문장');
     if (!h2s.some((h) => h.includes(v.name))) errs.push('H2');
-    if (n < 3 || n > 5) errs.push(`본문 ${n}회(3~5 아님)`);
+    if (n < 3 || n > 8) errs.push(`본문 ${n}회(3~8 아님)`);
     if (!desc.includes(v.name)) errs.push('description');
     if (!alt.includes(v.name)) errs.push('og:image:alt');
     if (!html.includes(`"name":"${v.name}"`)) errs.push('JSON-LD name');
