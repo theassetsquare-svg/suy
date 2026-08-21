@@ -16,4 +16,4 @@ Allow: /
 User-agent: PerplexityBot
 Allow: /
 
-Sitemap: https://suy-e7e.pages.dev/sitemap.xml
+Sitemap: https://satt-bhj.pages.dev/sitemap.xml
