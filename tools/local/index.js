@@ -11,7 +11,7 @@ const VENUES = [
 
 const HUB = {
   slug: 'hub',
-  path: '/local/',
+  path: '/local-1/',
   og: 'hub',
   name: '전국 나이트 동네 지도 40',
   title: '전국 나이트 동네 지도 40',

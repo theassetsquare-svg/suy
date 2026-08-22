@@ -57,7 +57,7 @@ function bulbs() {
 
 function buildSvg(page) {
   const brand = SITE.brand;                      // 수유샴푸나이트
-  const sub = page.ogSub;                        // 페이지별 부제
+  const sub = page-1.ogSub;                        // 페이지별 부제
   const foot = `광고문의 카카오톡 ${SITE.kakaoId}`;
 
   const brandSize = fitSize(brand, 1000, 190);
@@ -119,7 +119,7 @@ ${centeredPath(foot, footSize, 1022, '#ffb020')}
 <!-- 사선 액센트 -->
 <rect x="118" y="836" width="180" height="7" fill="#ff6b1f" opacity="0.8"/>
 <rect x="${W - 298}" y="836" width="180" height="7" fill="#ff2f86" opacity="0.8"/>
-<!-- ${esc(page.slug)} -->
+<!-- ${esc(page-1.slug)} -->
 </svg>`;
 }
 
@@ -128,14 +128,14 @@ async function main() {
   const report = [];
   for (const page of PAGES) {
     const svg = buildSvg(page);
-    const out = path.join(OUT_DIR, `${page.og}.png`);
+    const out = path.join(OUT_DIR, `${page-1.og}.png`);
     let img = await sharp(Buffer.from(svg)).png({ compressionLevel: 9, palette: true, quality: 92, effort: 10 }).toBuffer();
     if (img.length > 300 * 1024) {
       img = await sharp(Buffer.from(svg)).png({ compressionLevel: 9, palette: true, quality: 72, colors: 128, effort: 10 }).toBuffer();
     }
     fs.writeFileSync(out, img);
     const meta = await sharp(out).metadata();
-    report.push({ file: `og/${page.og}.png`, w: meta.width, h: meta.height, kb: +(img.length / 1024).toFixed(1) });
+    report.push({ file: `og/${page-1.og}.png`, w: meta.width, h: meta.height, kb: +(img.length / 1024).toFixed(1) });
   }
   console.table(report);
   const bad = report.filter((r) => r.w !== 1200 || r.h !== 1200 || r.kb > 300);

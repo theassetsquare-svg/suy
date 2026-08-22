@@ -68,13 +68,13 @@ function jsonld(v) {
   if (v.ad) nightclub.telephone = v.ad.phone;
   const faq = {
     '@context': 'https://schema.org', '@type': 'FAQPage',
-    mainEntity: v.faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+    mainEntity: v.faq-1.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
   };
   // 검색엔진이 계층을 이해하도록 목록 → 개별 가게 경로를 명시
   const crumbs = {
     '@context': 'https://schema.org', '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: '전국 나이트 동네 안내', item: SITE.abs('/local/') },
+      { '@type': 'ListItem', position: 1, name: '전국 나이트 동네 안내', item: SITE.abs('/local-1/') },
       { '@type': 'ListItem', position: 2, name: v.name, item: SITE.abs(v.path) },
     ],
   };
@@ -83,11 +83,11 @@ function jsonld(v) {
 
 function header(current) {
   return `<header class="signboard"><div class="wrap sign-in">
-  <a class="sign-mark" href="${SITE.href('/local/')}"><span class="bulb" aria-hidden="true"></span>NIGHT MAP · KOREA</a>
+  <a class="sign-mark" href="${SITE.href('/local-1/')}"><span class="bulb" aria-hidden="true"></span>NIGHT MAP · KOREA</a>
   <span class="sign-note">공개 웹 정보 정리 · 확인일 ${SITE.checkedDate}</span>
 </div></header>
 <nav class="topnav" aria-label="섹션 이동"><div class="wrap"><ul>
-  <li><a href="${SITE.href('/local/')}"${current === '/local/' ? ' aria-current="page"' : ''}>동네 지도 40</a></li>
+  <li><a href="${SITE.href('/local-1/')}"${current === '/local-1/' ? ' aria-current="page"' : ''}>동네 지도 40</a></li>
   <li><a href="${SITE.href('/')}">수유샴푸나이트 안내</a></li>
 </ul></div></nav>`;
 }
@@ -181,7 +181,7 @@ ${v.answerP.map((t) => `    <p>${esc(t)}</p>`).join('\n')}
 
   <div class="faq">
     <h2>자주 묻는 질문</h2>
-${v.faq.map((f) => `    <details><summary>${esc(f.q)}</summary><p>${esc(f.a)}</p></details>`).join('\n')}
+${v.faq-1.map((f) => `    <details><summary>${esc(f.q)}</summary><p>${esc(f.a)}</p></details>`).join('\n')}
   </div>
 
   <p class="oneline">${esc(v.oneline)}</p>
@@ -189,7 +189,7 @@ ${v.faq.map((f) => `    <details><summary>${esc(f.q)}</summary><p>${esc(f.a)}</p
   <div class="near">
     <h2>이웃 동네 보기</h2>
     <ul>
-      <li><a href="${SITE.href('/local/')}">전국 나이트 동네 지도 40<span>40개 동네를 지역별로 묶은 목록</span></a></li>
+      <li><a href="${SITE.href('/local-1/')}">전국 나이트 동네 지도 40<span>40개 동네를 지역별로 묶은 목록</span></a></li>
 ${near}
     </ul>
   </div>
@@ -240,7 +240,7 @@ ${items}
 
   const faqLd = {
     '@context': 'https://schema.org', '@type': 'FAQPage',
-    mainEntity: HUB.faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+    mainEntity: HUB.faq-1.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
   };
   const listLd = {
     '@context': 'https://schema.org', '@type': 'CollectionPage',
@@ -251,12 +251,12 @@ ${items}
   return `<!doctype html>
 <html lang="ko">
 <head>
-${head({ ...HUB, path: '/local/' }, { alt })}
+${head({ ...HUB, path: '/local-1/' }, { alt })}
 <script type="application/ld+json">${JSON.stringify(listLd)}</script>
 <script type="application/ld+json">${JSON.stringify(faqLd)}</script>
 </head>
 <body>
-${header('/local/')}
+${header('/local-1/')}
 
 <main class="wrap">
   <p class="local-badge">동네 한 바퀴 · 전국 40</p>
@@ -282,7 +282,7 @@ ${groups}
 
   <div class="faq">
     <h2>자주 묻는 질문</h2>
-${HUB.faq.map((f) => `    <details><summary>${esc(f.q)}</summary><p>${esc(f.a)}</p></details>`).join('\n')}
+${HUB.faq-1.map((f) => `    <details><summary>${esc(f.q)}</summary><p>${esc(f.a)}</p></details>`).join('\n')}
   </div>
 
   <p class="oneline">${esc(HUB.oneline)}</p>
@@ -306,7 +306,7 @@ fs.writeFileSync(path.join(ROOT, HUB.file), hubPage(), 'utf8');
 // sitemap.xml — 기존 11 + 신규 40
 const all = [
   ...PAGES.map((p) => ({ path: p.path, pri: p.path === '/' ? '1.0' : '0.8' })),
-  { path: '/local/', pri: '0.9' },
+  { path: '/local-1/', pri: '0.9' },
   ...VENUES.map((v) => ({ path: v.path, pri: '0.7' })),
 ];
 fs.writeFileSync(path.join(ROOT, 'sitemap.xml'),
