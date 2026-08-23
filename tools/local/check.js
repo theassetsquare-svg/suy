@@ -116,7 +116,7 @@ const CHARS = {};
       const u = m[1];
       if (u === SITE.kakao) continue;
       if (u.startsWith(SITE.origin)) continue;
-      if (/^tel:010-(5653-0069|7528-4936|2221-1937)$/.test(u)) continue;
+      if (/^tel:010-(5653-0069|7528-4936|2221-1937|8156-6558)$/.test(u)) continue;
       ext.push(`${f} → ${u}`);
     }
   }
@@ -146,7 +146,7 @@ const CHARS = {};
 }
 
 // ── G10 전화번호 위치 ──
-const PHONE = { 'ulsan-champion': '010-5653-0069', 'changwon-lulurala': '010-7528-4936', 'bulgwang-hobak': '010-2221-1937' };
+const PHONE = { 'ulsan-champion': '010-5653-0069', 'changwon-lulurala': '010-7528-4936', 'bulgwang-hobak': '010-2221-1937', 'dapsimni-miracle': '010-8156-6558' };
 {
   const bad = [];
   for (const f of NEW_TEXT_FILES) {
