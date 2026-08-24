@@ -7,7 +7,7 @@
   Cache-Control: public, max-age=60, s-maxage=300
 
 /og/*
-  Cache-Control: public, max-age=2592000, immutable
+  Cache-Control: public, max-age=3600, must-revalidate
 
 /assets/*
   Cache-Control: public, max-age=2592000, immutable
