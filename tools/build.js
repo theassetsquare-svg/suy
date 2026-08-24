@@ -73,7 +73,7 @@ function jsonld(p) {
   const faq = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: p.faq-1.map((f) => ({
+    mainEntity: p.faq.map((f) => ({
       '@type': 'Question',
       name: f.q,
       acceptedAnswer: { '@type': 'Answer', text: f.a },

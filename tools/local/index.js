@@ -122,14 +122,53 @@ const AREA = {
 
 const EXTRA = require('./venues-extra');
 
+/* ★ 2026-08-24 — 실제 배포된 폴더 이름을 찾아 쓴다.
+ *
+ * 왜 필요한가
+ *   주소교체로 페이지 폴더가 바뀌었다(busan-asiad → busan-asiad-1).
+ *   철자가 다른 것도 있다(데이터 changwon-lulurala / 폴더 changwon-lululala-1).
+ *   그런데 여기서는 데이터 슬러그로 경로를 만들고 있어서
+ *     · build.js 는 **옛 주소 폴더를 새로 만들어 폐기한 주소를 되살리고**
+ *     · check.js 는 파일을 못 찾아 아예 죽고
+ *     · build-og.js 는 사이트가 안 쓰는 이름으로 썸네일을 만들었다.
+ *   페이지 안의 가게이름으로 실제 폴더를 찾아 짝지어 둔다.
+ *   폴더를 못 찾으면 예전처럼 데이터 슬러그를 쓴다(새로 만드는 페이지).
+ */
+const fsFolder = require('fs');
+const pathFolder = require('path');
+const LOCAL_DIR = pathFolder.join(__dirname, '..', '..', 'local');
+const FOLDER_BY_NAME = {};
+/* 페이지가 실제로 부르는 썸네일 파일 이름. 페이지마다 붙은 꼬리가 달라서
+   (local-cheongdam-1-1.png 처럼) 규칙으로 만들면 어긋난다. 페이지에서 읽는다. */
+const OG_BY_NAME = {};
+(() => {
+  let names = [];
+  try { names = fsFolder.readdirSync(LOCAL_DIR, { withFileTypes: true }).filter((e) => e.isDirectory()).map((e) => e.name); }
+  catch { return; }
+  for (const dir of names) {
+    let html = '';
+    try { html = fsFolder.readFileSync(pathFolder.join(LOCAL_DIR, dir, 'index.html'), 'utf8'); } catch { continue; }
+    const name = (html.match(/"@type":"NightClub","name":"([^"]+)"/) || [])[1];
+    if (!name || FOLDER_BY_NAME[name]) continue;
+    FOLDER_BY_NAME[name] = dir;
+    const og = (html.match(/og\/(local-[a-z0-9-]+)\.png/) || [])[1];
+    if (og) OG_BY_NAME[name] = og;
+  }
+})();
+
 for (const v of VENUES) {
   if (EXTRA[v.slug]) v.sections.push(EXTRA[v.slug]);
-  v.path = `/local/${v.slug}/`;
-  v.file = `local/${v.slug}/index.html`;
-  v.og = `local-${v.slug}`;
+  const dir = FOLDER_BY_NAME[v.name] || v.slug;   // 배포된 폴더가 있으면 그것을 쓴다
+  v.dir = dir;
+  v.path = `/local/${dir}/`;
+  v.file = `local/${dir}/index.html`;
+  v.og = OG_BY_NAME[v.name] || `local-${dir}`;   // 페이지가 부르는 이름 그대로
   v.area = AREA[v.slug];
 }
-HUB.file = 'local/index.html';
+/* ★ 허브도 주소교체로 /local/ → /local-1/ 로 옮겨졌다(2026-08-24 확인).
+   실제로 있는 쪽을 쓴다. */
+HUB.dir = fsFolder.existsSync(pathFolder.join(__dirname, '..', '..', 'local-1', 'index.html')) ? 'local-1' : 'local';
+HUB.file = `${HUB.dir}/index.html`;
 HUB.og = 'local-hub';
 
 const BY_SLUG = Object.fromEntries(VENUES.map((v) => [v.slug, v]));

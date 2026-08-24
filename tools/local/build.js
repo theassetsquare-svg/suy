@@ -68,7 +68,7 @@ function jsonld(v) {
   if (v.ad) nightclub.telephone = v.ad.phone;
   const faq = {
     '@context': 'https://schema.org', '@type': 'FAQPage',
-    mainEntity: v.faq-1.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+    mainEntity: v.faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
   };
   // 검색엔진이 계층을 이해하도록 목록 → 개별 가게 경로를 명시
   const crumbs = {
@@ -181,7 +181,7 @@ ${v.answerP.map((t) => `    <p>${esc(t)}</p>`).join('\n')}
 
   <div class="faq">
     <h2>자주 묻는 질문</h2>
-${v.faq-1.map((f) => `    <details><summary>${esc(f.q)}</summary><p>${esc(f.a)}</p></details>`).join('\n')}
+${v.faq.map((f) => `    <details><summary>${esc(f.q)}</summary><p>${esc(f.a)}</p></details>`).join('\n')}
   </div>
 
   <p class="oneline">${esc(v.oneline)}</p>
@@ -240,7 +240,7 @@ ${items}
 
   const faqLd = {
     '@context': 'https://schema.org', '@type': 'FAQPage',
-    mainEntity: HUB.faq-1.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+    mainEntity: HUB.faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
   };
   const listLd = {
     '@context': 'https://schema.org', '@type': 'CollectionPage',
@@ -282,7 +282,7 @@ ${groups}
 
   <div class="faq">
     <h2>자주 묻는 질문</h2>
-${HUB.faq-1.map((f) => `    <details><summary>${esc(f.q)}</summary><p>${esc(f.a)}</p></details>`).join('\n')}
+${HUB.faq.map((f) => `    <details><summary>${esc(f.q)}</summary><p>${esc(f.a)}</p></details>`).join('\n')}
   </div>
 
   <p class="oneline">${esc(HUB.oneline)}</p>

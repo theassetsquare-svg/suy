@@ -116,7 +116,7 @@ const CHARS = {};
       const u = m[1];
       if (u === SITE.kakao) continue;
       if (u.startsWith(SITE.origin)) continue;
-      if (/^tel:010-(5653-0069|7528-4936|2221-1937|8156-6558)$/.test(u)) continue;
+      if (/^tel:010-(5653-0069|7528-4936|2221-1937|8156-6558|3614-1056)$/.test(u)) continue;
       ext.push(`${f} → ${u}`);
     }
   }
@@ -146,7 +146,32 @@ const CHARS = {};
 }
 
 // ── G10 전화번호 위치 ──
-const PHONE = { 'ulsan-champion': '010-5653-0069', 'changwon-lulurala': '010-7528-4936', 'bulgwang-hobak': '010-2221-1937', 'dapsimni-miracle': '010-8156-6558' };
+/* ★ 2026-08-24 — 예전에는 이 표를 손으로 적어 뒀다. 광고주를 새로 넣으면 여기에 없어
+   "미등록 번호"로 막히고, 슬러그가 바뀌면 열쇠가 어긋났다(다른 저장소에서 실제로 막혀 있었다).
+   이미 위에서 VENUES 를 읽고 있으므로 거기서 만든다. 표는 venues-*.js 한 곳뿐이다. */
+const PHONE = Object.fromEntries(
+  VENUES.filter((v) => v.ad && v.ad.phone).map((v) => [v.slug, v.ad.phone])
+);
+/* ★ 2026-08-24 — 데이터의 슬러그와 실제 페이지 폴더가 다르다.
+   주소교체로 폴더가 busan-asiad → busan-asiad-1 처럼 바뀌었고,
+   철자가 다른 것도 있다(데이터 changwon-lulurala / 폴더 changwon-lululala-1).
+   그래서 `local/${slug}/index.html` 을 그대로 읽던 검문이 파일을 못 찾아
+   **아예 돌지 못하고 죽어 있었다.**
+   페이지 안의 가게이름으로 폴더를 찾아 짝지어 둔다. 주소가 또 바뀌어도 따라간다. */
+const PAGE_OF = (() => {
+  const map = {};
+  for (const f of NEW_HTML) {
+    const h = read(f);
+    const name = (h.match(/"@type":"NightClub","name":"([^"]+)"/) || [])[1];
+    if (name) map[name] = f;
+  }
+  return map;
+})();
+const pageFileOf = (slug) => {
+  const v = BY_SLUG[slug];
+  return (v && PAGE_OF[v.name]) || `local/${slug}/index.html`;
+};
+
 {
   const bad = [];
   for (const f of NEW_TEXT_FILES) {
@@ -155,19 +180,20 @@ const PHONE = { 'ulsan-champion': '010-5653-0069', 'changwon-lulurala': '010-752
     for (const num of found) {
       const owner = Object.entries(PHONE).find(([, p]) => p === num);
       if (!owner) { bad.push(`${f}: 허용되지 않은 번호 ${num}`); continue; }
-      if (f !== `local/${owner[0]}/index.html`) bad.push(`${f}: ${num} 는 ${owner[0]} 페이지 전용`);
+      if (f !== pageFileOf(owner[0])) bad.push(`${f}: ${num} 는 ${owner[0]} 페이지 전용`);
     }
   }
   for (const [slug, num] of Object.entries(PHONE)) {
-    const h = read(`local/${slug}/index.html`);
-    if (!h.includes(`href="tel:${num}"`)) bad.push(`local/${slug}: tel 링크 누락`);
+    const pf = pageFileOf(slug);
+    const h = read(pf);
+    if (!h.includes(`href="tel:${num}"`)) bad.push(`${pf}: tel 링크 누락`);
     const v = BY_SLUG[slug];
-    if (!h.includes(`📞 ${v.name} ${v.ad.nick} ${num}`)) bad.push(`local/${slug}: 고정 바 표기 불일치`);
+    if (!h.includes(`📞 ${v.name} ${v.ad.nick} ${num}`)) bad.push(`${pf}: 고정 바 표기 불일치`);
   }
-  // 나머지 37페이지는 카카오 바
+  // 나머지 페이지는 카카오 바
+  const adPages = new Set(Object.keys(PHONE).map(pageFileOf));
   for (const f of NEW_HTML) {
-    const slug = f.replace('local/', '').replace('/index.html', '');
-    if (PHONE[slug]) continue;
+    if (adPages.has(f)) continue;
     if (!read(f).includes(`💬 광고문의 카카오톡 ${SITE.kakaoId}`)) bad.push(`${f}: 카카오 고정 바 누락`);
   }
   bad.length ? fails.push(`G10 전화번호/고정 바 → ${bad.join(', ')}`)
