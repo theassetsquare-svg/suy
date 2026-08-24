@@ -8,7 +8,7 @@ import { fileURLToPath } from 'node:url';
 
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
 
-const HOST = 'satt-bhj.pages.dev';
+const HOST = 'd.nolcool.com';
 const ORIGIN = `https://${HOST}`;
 const KEY = '67dcc6a390692f4972b76917f6836a33';
 const KEY_LOCATION = `${ORIGIN}/${KEY}.txt`;

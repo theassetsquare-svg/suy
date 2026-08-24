@@ -4,7 +4,7 @@
 const SITE = {
   // 실제 라이브 도메인 (Cloudflare Pages, 루트 서빙).
   // 커스텀 도메인 연결 시 이 두 줄만 바꾸고 `npm run all` 재실행.
-  origin: 'https://satt-bhj.pages.dev',
+  origin: 'https://d.nolcool.com',
   base: '',
   brand: '수유샴푸나이트',
   kakao: 'https://open.kakao.com/o/sBesta12',

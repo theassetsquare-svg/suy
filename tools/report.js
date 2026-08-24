@@ -11,7 +11,7 @@ const stamp=run("git log -1 --format='%h %ad' --date=format:'%Y-%m-%d %H:%M'").t
 const parts=[];
 parts.push('# 검사 리포트\n');
 parts.push(`- 커밋: ${stamp}`);
-parts.push(`- 도메인: https://satt-bhj.pages.dev`);
+parts.push(`- 도메인: https://d.nolcool.com`);
 parts.push(`- 생성: 이 파일은 \`node tools/report.js\` 로 언제든 다시 만들 수 있습니다.\n`);
 const jobs=[
   ['기존 11페이지 게이트 (G1~G11)','node tools/check.js'],

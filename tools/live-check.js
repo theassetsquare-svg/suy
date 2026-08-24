@@ -2,7 +2,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const ORIGIN = 'https://satt-bhj.pages.dev';
+const ORIGIN = 'https://d.nolcool.com';
 const NAVER_KEY = '67dcc6a390692f4972b76917f6836a33';
 
 function sitemapUrls() {

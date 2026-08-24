@@ -16,4 +16,4 @@ Allow: /
 User-agent: PerplexityBot
 Allow: /
 
-Sitemap: https://satt-bhj.pages.dev/sitemap.xml
+Sitemap: https://d.nolcool.com/sitemap.xml
