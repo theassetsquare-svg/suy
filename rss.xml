@@ -1,11 +1,95 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0">
 <channel>
-  <title>nolcool — 전국 나이트 안내</title>
+  <title>새벽 4시, 무너진 뒤 다시 일어선 여덟 달의 기록</title>
   <link>https://d.nolcool.com/</link>
-  <description>전국 나이트 가게 안내 페이지 모음</description>
+  <description>전국 나이트 안내 — 전체 페이지</description>
   <language>ko</language>
   <lastBuildDate>Wed, 26 Aug 2026 00:00:00 GMT</lastBuildDate>
+  <item>
+    <title>새벽 4시, 무너진 뒤 다시 일어선 여덟 달의 기록</title>
+    <link>https://d.nolcool.com/</link>
+    <guid isPermaLink="true">https://d.nolcool.com/</guid>
+    <description>모든 걸 잃고 강북 큰길을 걷던 사람이 여덟 달 만에 다시 일어서기까지의 기록입니다. 오늘 하루가 유난히 무거운 분께 권합니다.</description>
+    <pubDate>Wed, 26 Aug 2026 00:00:00 GMT</pubDate>
+  </item>
+  <item>
+    <title>수유샴푸나이트 가는 길, 수유역 4번 출구부터</title>
+    <link>https://d.nolcool.com/location-1/</link>
+    <guid isPermaLink="true">https://d.nolcool.com/location-1/</guid>
+    <description>수유샴푸나이트 위치를 지번과 도로명, 지하철 출구를 기준으로 정리했습니다. 4번 출구로 올라온 뒤 어느 방향으로 걸어야 할까요?</description>
+    <pubDate>Wed, 26 Aug 2026 00:00:00 GMT</pubDate>
+  </item>
+  <item>
+    <title>수유샴푸나이트 첫 방문, 문 앞에서 갈리는 것</title>
+    <link>https://d.nolcool.com/first-1/</link>
+    <guid isPermaLink="true">https://d.nolcool.com/first-1/</guid>
+    <description>수유샴푸나이트 첫 방문에 필요한 소지품과 마음가짐을 하나씩 차례로 정리했습니다. 결과가 문 앞에서 갈린다는 말은 무슨 뜻일까요?</description>
+    <pubDate>Wed, 26 Aug 2026 00:00:00 GMT</pubDate>
+  </item>
+  <item>
+    <title>수유샴푸나이트 부킹, 흐름을 알면 밤이 쉽다</title>
+    <link>https://d.nolcool.com/booking-1/</link>
+    <guid isPermaLink="true">https://d.nolcool.com/booking-1/</guid>
+    <description>수유샴푸나이트 부킹이 어떤 순서로 흘러가는지 그 구조만 담백하게 적어 두었습니다. 왜 조급해하는 쪽이 늘 손해를 보게 되는 걸까요?</description>
+    <pubDate>Wed, 26 Aug 2026 00:00:00 GMT</pubDate>
+  </item>
+  <item>
+    <title>수유샴푸나이트 시간대, 밤은 몇 시에 차오를까</title>
+    <link>https://d.nolcool.com/time-1/</link>
+    <guid isPermaLink="true">https://d.nolcool.com/time-1/</guid>
+    <description>수유샴푸나이트에 몇 시에 도착할지 정하는 기준을 단계별로 정리했습니다. 일찍 가는 쪽과 늦게 가는 쪽 중 어느 편이 유리할까요?</description>
+    <pubDate>Wed, 26 Aug 2026 00:00:00 GMT</pubDate>
+  </item>
+  <item>
+    <title>수유샴푸나이트 홀, 어디 앉느냐가 절반이다</title>
+    <link>https://d.nolcool.com/hall-1/</link>
+    <guid isPermaLink="true">https://d.nolcool.com/hall-1/</guid>
+    <description>수유샴푸나이트 홀에서 앉을 자리를 고르는 기준을 목적별로 정리했습니다. 좋은 자리와 어긋난 자리는 대체 무엇으로 갈리는 걸까요?</description>
+    <pubDate>Wed, 26 Aug 2026 00:00:00 GMT</pubDate>
+  </item>
+  <item>
+    <title>수유샴푸나이트 연령대, 나도 어울릴 수 있을까</title>
+    <link>https://d.nolcool.com/age-1/</link>
+    <guid isPermaLink="true">https://d.nolcool.com/age-1/</guid>
+    <description>수유샴푸나이트 연령대에 대해 확인된 것과 확인되지 않은 것을 따로 구분해 적었습니다. 나이가 정말로 어울림을 가르는 변수가 될까요?</description>
+    <pubDate>Wed, 26 Aug 2026 00:00:00 GMT</pubDate>
+  </item>
+  <item>
+    <title>수유샴푸나이트 주차·막차, 밤늦은 귀가 정리</title>
+    <link>https://d.nolcool.com/parking-1/</link>
+    <guid isPermaLink="true">https://d.nolcool.com/parking-1/</guid>
+    <description>수유샴푸나이트에 갈 때 주차와 귀가 수단을 정하는 기준을 함께 정리해 두었습니다. 차를 가져가는 편이 정말로 더 나은 선택일까요?</description>
+    <pubDate>Wed, 26 Aug 2026 00:00:00 GMT</pubDate>
+  </item>
+  <item>
+    <title>수유샴푸나이트 궁금증 총정리, 여기서 끝낸다</title>
+    <link>https://d.nolcool.com/faq-1/</link>
+    <guid isPermaLink="true">https://d.nolcool.com/faq-1/</guid>
+    <description>수유샴푸나이트에 대해 반복해서 올라오는 질문을 갈래별로 한자리에 모아 두었습니다. 확인된 답과 확인 불가 항목은 어떻게 나뉠까요?</description>
+    <pubDate>Wed, 26 Aug 2026 00:00:00 GMT</pubDate>
+  </item>
+  <item>
+    <title>수유샴푸나이트, 강북에서 이 이름이 남은 이유</title>
+    <link>https://d.nolcool.com/why-1/</link>
+    <guid isPermaLink="true">https://d.nolcool.com/why-1/</guid>
+    <description>수유샴푸나이트라는 이름이 오래 회자되어 온 배경을 지리와 상권의 관점으로 풀었습니다. 간판이 아니라면 대체 무엇이 남긴 걸까요?</description>
+    <pubDate>Wed, 26 Aug 2026 00:00:00 GMT</pubDate>
+  </item>
+  <item>
+    <title>수유샴푸나이트 예습 노트, 가기 전 5분이면 된다</title>
+    <link>https://d.nolcool.com/guide-1/</link>
+    <guid isPermaLink="true">https://d.nolcool.com/guide-1/</guid>
+    <description>수유샴푸나이트에 가기 전 5분 동안 확인할 항목만 골라 압축해 담았습니다. 딱 하나만 외우고 간다면 그건 과연 무엇이어야 할까요?</description>
+    <pubDate>Wed, 26 Aug 2026 00:00:00 GMT</pubDate>
+  </item>
+  <item>
+    <title>전국 나이트 동네 지도 40</title>
+    <link>https://d.nolcool.com/local-1/</link>
+    <guid isPermaLink="true">https://d.nolcool.com/local-1/</guid>
+    <description>전국 나이트 40곳을 가게가 아니라 그 동네 기준으로 묶은 지도입니다. 내 동네의 밤은 어디로 모일까요?</description>
+    <pubDate>Wed, 26 Aug 2026 00:00:00 GMT</pubDate>
+  </item>
   <item>
     <title>신림그랑프리나이트, 신림사거리가 밤에 켜지는 순간</title>
     <link>https://d.nolcool.com/sillim-grandprix-night/</link>
@@ -91,6 +175,13 @@
     <pubDate>Wed, 26 Aug 2026 00:00:00 GMT</pubDate>
   </item>
   <item>
+    <title>독산동국빈관나이트, 범안로 옛 공단길의 밤</title>
+    <link>https://d.nolcool.com/doksan-gukbinkwan-1/</link>
+    <guid isPermaLink="true">https://d.nolcool.com/doksan-gukbinkwan-1/</guid>
+    <description>독산동국빈관나이트를 금천구 옛 공단 상권이라는 각도로 풀었습니다. 범안로 옛 공단길 이야기입니다. 공장 동네의 밤은 어떻게 변했을까요?</description>
+    <pubDate>Wed, 26 Aug 2026 00:00:00 GMT</pubDate>
+  </item>
+  <item>
     <title>답십리미라클나이트, 동네 이름보다 유명해진 간판</title>
     <link>https://d.nolcool.com/dapsimni-miracle-night/</link>
     <guid isPermaLink="true">https://d.nolcool.com/dapsimni-miracle-night/</guid>
@@ -140,6 +231,20 @@
     <pubDate>Wed, 26 Aug 2026 00:00:00 GMT</pubDate>
   </item>
   <item>
+    <title>의정부한국관나이트, 태평로 구시가의 밤 얼굴</title>
+    <link>https://d.nolcool.com/uijeongbu-hankookkwan-1/</link>
+    <guid isPermaLink="true">https://d.nolcool.com/uijeongbu-hankookkwan-1/</guid>
+    <description>의정부한국관나이트가 선 태평로 일대를 의정부 구시가 관점으로 정리했습니다. 태평로 구시가 이야기입니다. 구시가의 밤은 어떤 얼굴일까요?</description>
+    <pubDate>Wed, 26 Aug 2026 00:00:00 GMT</pubDate>
+  </item>
+  <item>
+    <title>의정부백악관나이트, 이 동네 밤의 오래된 기준점</title>
+    <link>https://d.nolcool.com/uijeongbu-baekakkwan-1/</link>
+    <guid isPermaLink="true">https://d.nolcool.com/uijeongbu-baekakkwan-1/</guid>
+    <description>의정부백악관나이트를 의정부동 상권의 기준점이라는 각도로 풀었습니다. 의정부동 골목 이야기입니다. 기준점은 어떻게 만들어지는 걸까요?</description>
+    <pubDate>Wed, 26 Aug 2026 00:00:00 GMT</pubDate>
+  </item>
+  <item>
     <title>수원코리아나이트, 인계동 번화가 안쪽의 밤</title>
     <link>https://d.nolcool.com/suwon-korea-night/</link>
     <guid isPermaLink="true">https://d.nolcool.com/suwon-korea-night/</guid>
@@ -151,6 +256,13 @@
     <link>https://d.nolcool.com/osan-hobak-night/</link>
     <guid isPermaLink="true">https://d.nolcool.com/osan-hobak-night/</guid>
     <description>오산호박나이트가 자리한 오산역 앞 상권을 시장통이라는 각도로 정리했습니다. 오산역과 중앙시장 이야기입니다. 작은 도시의 밤은 어떨까요?</description>
+    <pubDate>Wed, 26 Aug 2026 00:00:00 GMT</pubDate>
+  </item>
+  <item>
+    <title>인덕원국빈관나이트, 사거리 이름이 된 동네</title>
+    <link>https://d.nolcool.com/indeokwon-gukbinkwan-1/</link>
+    <guid isPermaLink="true">https://d.nolcool.com/indeokwon-gukbinkwan-1/</guid>
+    <description>인덕원국빈관나이트를 인덕원 사거리 상권 관점으로 정리했습니다. 인덕원 교차점 이야기입니다. 동네 이름이 사거리가 되면 무슨 일이 생길까요?</description>
     <pubDate>Wed, 26 Aug 2026 00:00:00 GMT</pubDate>
   </item>
   <item>
