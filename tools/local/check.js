@@ -75,7 +75,7 @@ const OLD = PAGES.map((p) => ({ p, html: read(p.file) }));
 {
   const DROP = ['fact-wrap', 'pinbox', 'near', 'more', 'hero-shot'];
   const mk = (h) => new Set(mainText(h, { drop: DROP }).split(/(?<=[.?!])\s+/).map((s) => s.trim()).filter((s) => s.length >= 20));
-  const items = [...V.map((x) => ({ id: x.v.path, s: mk(x.html) })), { id: '/local-1/', s: mk(hubHtml) },
+  const items = [...V.map((x) => ({ id: x.v.path, s: mk(x.html) })), { id: '/area/local-1/', s: mk(hubHtml) },
                  ...OLD.map((x) => ({ id: '기존:' + x.p.path, s: mk(x.html) }))];
   const bad = [];
   for (let i = 0; i < items.length; i++) for (let j = i + 1; j < items.length; j++) {
@@ -90,7 +90,7 @@ const OLD = PAGES.map((p) => ({ p, html: read(p.file) }));
 const CHARS = {};
 {
   const bad = [], over = [];
-  for (const x of [...V.map((x) => ({ id: x.v.path, h: x.html })), { id: '/local-1/', h: hubHtml }]) {
+  for (const x of [...V.map((x) => ({ id: x.v.path, h: x.html })), { id: '/area/local-1/', h: hubHtml }]) {
     const n = mainText(x.h).length; CHARS[x.id] = n;
     if (n < 1800) bad.push(`${x.id}(${n})`);
     if (n > 2500) over.push(`${x.id}(${n})`);
@@ -103,7 +103,7 @@ const CHARS = {};
 
 // ── G7 내부링크 404 / 외부링크 화이트리스트 ──
 {
-  const valid = new Set([...PAGES.map((p) => SITE.href(p.path)), SITE.href('/local-1/'), ...VENUES.map((v) => SITE.href(v.path))]);
+  const valid = new Set([...PAGES.map((p) => SITE.href(p.path)), SITE.href('/area/local-1/'), ...VENUES.map((v) => SITE.href(v.path))]);
   const skip = [SITE.href('/og/'), SITE.href('/assets/'), SITE.href('/rss.xml')];
   const bad = [], ext = [];
   for (const f of NEW_HTML) {

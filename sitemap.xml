@@ -7,319 +7,317 @@
     <priority>1.0</priority>
   </url>
 <url><loc>https://d.nolcool.com/night/</loc><lastmod>2026-08-26</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url>
-    <loc>https://d.nolcool.com/location-1/</loc>
+<url>
+    <loc>https://d.nolcool.com/area/location-1/</loc>
     <lastmod>2026-08-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-  <url>
+<url>
     <loc>https://d.nolcool.com/first-1/</loc>
     <lastmod>2026-08-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-  <url>
-    <loc>https://d.nolcool.com/booking-1/</loc>
+<url>
+    <loc>https://d.nolcool.com/area/booking-1/</loc>
     <lastmod>2026-08-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-  <url>
-    <loc>https://d.nolcool.com/time-1/</loc>
+<url>
+    <loc>https://d.nolcool.com/area/time-1/</loc>
     <lastmod>2026-08-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-  <url>
-    <loc>https://d.nolcool.com/hall-1/</loc>
+<url>
+    <loc>https://d.nolcool.com/area/hall-1/</loc>
     <lastmod>2026-08-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-  <url>
-    <loc>https://d.nolcool.com/age-1/</loc>
+<url>
+    <loc>https://d.nolcool.com/area/age-1/</loc>
     <lastmod>2026-08-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-  <url>
-    <loc>https://d.nolcool.com/parking-1/</loc>
+<url>
+    <loc>https://d.nolcool.com/area/parking-1/</loc>
     <lastmod>2026-08-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-  <url>
+<url>
     <loc>https://d.nolcool.com/faq-1/</loc>
     <lastmod>2026-08-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-  <url>
-    <loc>https://d.nolcool.com/why-1/</loc>
+<url>
+    <loc>https://d.nolcool.com/area/why-1/</loc>
     <lastmod>2026-08-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-  <url>
-    <loc>https://d.nolcool.com/guide-1/</loc>
+<url>
+    <loc>https://d.nolcool.com/area/guide-1/</loc>
     <lastmod>2026-08-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-  <url>
-    <loc>https://d.nolcool.com/local-1/</loc>
+<url>
+    <loc>https://d.nolcool.com/area/local-1/</loc>
     <lastmod>2026-08-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
-  <url>
-    <loc>https://d.nolcool.com/sillim-grandprix-night/</loc>
+<url>
+    <loc>https://d.nolcool.com/hall/sillim-grandprix-night/</loc>
     <lastmod>2026-08-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
-    <loc>https://d.nolcool.com/sangbong-hangukgwan-night/</loc>
+<url>
+    <loc>https://d.nolcool.com/hall/sangbong-hangukgwan-night/</loc>
     <lastmod>2026-08-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
-    <loc>https://d.nolcool.com/busan-asiad-night/</loc>
+<url>
+    <loc>https://d.nolcool.com/hall/busan-asiad-night/</loc>
     <lastmod>2026-08-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
-    <loc>https://d.nolcool.com/suwon-chancedome-night/</loc>
+<url>
+    <loc>https://d.nolcool.com/hall/suwon-chancedome-night/</loc>
     <lastmod>2026-08-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
-    <loc>https://d.nolcool.com/ansan-hit-night/</loc>
+<url>
+    <loc>https://d.nolcool.com/hall/ansan-hit-night/</loc>
     <lastmod>2026-08-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
-    <loc>https://d.nolcool.com/daejeon-seven-night/</loc>
+<url>
+    <loc>https://d.nolcool.com/hall/daejeon-seven-night/</loc>
     <lastmod>2026-08-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
-    <loc>https://d.nolcool.com/ilsan-shampoo-night/</loc>
+<url>
+    <loc>https://d.nolcool.com/hall/ilsan-shampoo-night/</loc>
     <lastmod>2026-08-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
-    <loc>https://d.nolcool.com/cheongdam-night/</loc>
+<url>
+    <loc>https://d.nolcool.com/hall/cheongdam-night/</loc>
     <lastmod>2026-08-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
-    <loc>https://d.nolcool.com/daejeon-one-night/</loc>
+<url>
+    <loc>https://d.nolcool.com/hall/daejeon-one-night/</loc>
     <lastmod>2026-08-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
-    <loc>https://d.nolcool.com/changwon-lululala-night/</loc>
+<url>
+    <loc>https://d.nolcool.com/hall/changwon-lululala-night/</loc>
     <lastmod>2026-08-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
-    <loc>https://d.nolcool.com/bulgwang-hobak-night/</loc>
+<url>
+    <loc>https://d.nolcool.com/hall/bulgwang-hobak-night/</loc>
     <lastmod>2026-08-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
-    <loc>https://d.nolcool.com/ulsan-champion-night/</loc>
+<url>
+    <loc>https://d.nolcool.com/hall/ulsan-champion-night/</loc>
     <lastmod>2026-08-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
-    <loc>https://d.nolcool.com/doksan-gukbinkwan-1/</loc>
+<url>
+    <loc>https://d.nolcool.com/area/doksan-gukbinkwan-1/</loc>
     <lastmod>2026-08-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
-    <loc>https://d.nolcool.com/dapsimni-miracle-night/</loc>
+<url>
+    <loc>https://d.nolcool.com/hall/dapsimni-miracle-night/</loc>
     <lastmod>2026-08-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
-    <loc>https://d.nolcool.com/gangseo-hobak-night/</loc>
+<url>
+    <loc>https://d.nolcool.com/hall/gangseo-hobak-night/</loc>
     <lastmod>2026-08-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
-    <loc>https://d.nolcool.com/yeongdeungpo-terminal-night/</loc>
+<url>
+    <loc>https://d.nolcool.com/hall/yeongdeungpo-terminal-night/</loc>
     <lastmod>2026-08-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
-    <loc>https://d.nolcool.com/nowon-hobak-night/</loc>
+<url>
+    <loc>https://d.nolcool.com/hall/nowon-hobak-night/</loc>
     <lastmod>2026-08-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
-    <loc>https://d.nolcool.com/gildong-chance-night/</loc>
+<url>
+    <loc>https://d.nolcool.com/hall/gildong-chance-night/</loc>
     <lastmod>2026-08-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
-    <loc>https://d.nolcool.com/paju-skydome-night/</loc>
+<url>
+    <loc>https://d.nolcool.com/hall/paju-skydome-night/</loc>
     <lastmod>2026-08-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
-    <loc>https://d.nolcool.com/guri-hobak-night/</loc>
+<url>
+    <loc>https://d.nolcool.com/hall/guri-hobak-night/</loc>
     <lastmod>2026-08-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
-    <loc>https://d.nolcool.com/uijeongbu-hankookkwan-1/</loc>
+<url>
+    <loc>https://d.nolcool.com/area/uijeongbu-hankookkwan-1/</loc>
     <lastmod>2026-08-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
-    <loc>https://d.nolcool.com/uijeongbu-baekakkwan-1/</loc>
+<url>
+    <loc>https://d.nolcool.com/area/uijeongbu-baekakkwan-1/</loc>
     <lastmod>2026-08-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
-    <loc>https://d.nolcool.com/suwon-korea-night/</loc>
+<url>
+    <loc>https://d.nolcool.com/hall/suwon-korea-night/</loc>
     <lastmod>2026-08-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
-    <loc>https://d.nolcool.com/osan-hobak-night/</loc>
+<url>
+    <loc>https://d.nolcool.com/hall/osan-hobak-night/</loc>
     <lastmod>2026-08-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
-    <loc>https://d.nolcool.com/indeokwon-gukbinkwan-1/</loc>
+<url>
+    <loc>https://d.nolcool.com/area/indeokwon-gukbinkwan-1/</loc>
     <lastmod>2026-08-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
-    <loc>https://d.nolcool.com/seongnam-shampoo-night/</loc>
+<url>
+    <loc>https://d.nolcool.com/hall/seongnam-shampoo-night/</loc>
     <lastmod>2026-08-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
-    <loc>https://d.nolcool.com/incheon-arabian-night/</loc>
+<url>
+    <loc>https://d.nolcool.com/hall/incheon-arabian-night/</loc>
     <lastmod>2026-08-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
-    <loc>https://d.nolcool.com/bucheon-gorae-night/</loc>
+<url>
+    <loc>https://d.nolcool.com/hall/bucheon-gorae-night/</loc>
     <lastmod>2026-08-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
-    <loc>https://d.nolcool.com/pyeongtaek-hobak-night/</loc>
+<url>
+    <loc>https://d.nolcool.com/hall/pyeongtaek-hobak-night/</loc>
     <lastmod>2026-08-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
-    <loc>https://d.nolcool.com/cheonan-stardome-night/</loc>
+<url>
+    <loc>https://d.nolcool.com/hall/cheonan-stardome-night/</loc>
     <lastmod>2026-08-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
-    <loc>https://d.nolcool.com/cheonan-korea-night/</loc>
+<url>
+    <loc>https://d.nolcool.com/hall/cheonan-korea-night/</loc>
     <lastmod>2026-08-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
-    <loc>https://d.nolcool.com/cheongju-hobak-night/</loc>
+<url>
+    <loc>https://d.nolcool.com/hall/cheongju-hobak-night/</loc>
     <lastmod>2026-08-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
-    <loc>https://d.nolcool.com/ulsan-newworld-night/</loc>
+<url>
+    <loc>https://d.nolcool.com/hall/ulsan-newworld-night/</loc>
     <lastmod>2026-08-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
-    <loc>https://d.nolcool.com/seosan-hobak-night/</loc>
+<url>
+    <loc>https://d.nolcool.com/hall/seosan-hobak-night/</loc>
     <lastmod>2026-08-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
-    <loc>https://d.nolcool.com/daegu-hobak-night/</loc>
+<url>
+    <loc>https://d.nolcool.com/hall/daegu-hobak-night/</loc>
     <lastmod>2026-08-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
-    <loc>https://d.nolcool.com/gumi-hobak-night/</loc>
+<url>
+    <loc>https://d.nolcool.com/hall/gumi-hobak-night/</loc>
     <lastmod>2026-08-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
-    <loc>https://d.nolcool.com/gwangju-sangmu-night/</loc>
+<url>
+    <loc>https://d.nolcool.com/hall/gwangju-sangmu-night/</loc>
     <lastmod>2026-08-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
-    <loc>https://d.nolcool.com/gwangju-cheomdan-night/</loc>
+<url>
+    <loc>https://d.nolcool.com/hall/gwangju-cheomdan-night/</loc>
     <lastmod>2026-08-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
-    <loc>https://d.nolcool.com/jeju-night/</loc>
+<url>
+    <loc>https://d.nolcool.com/hall/jeju-night/</loc>
     <lastmod>2026-08-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
-    <loc>https://d.nolcool.com/walk-guide/</loc>
+<url>
+    <loc>https://d.nolcool.com/area/walk-guide/</loc>
     <lastmod>2026-08-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-<url><loc>https://d.nolcool.com/hall/ulsan-champion-night/</loc><lastmod>2026-08-27</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-<url><loc>https://d.nolcool.com/hall/sillim-grandprix-night/</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://d.nolcool.com/hall/ulsan-champion-night-2/</loc><lastmod>2026-08-28</lastmod></url>
-  <url><loc>https://d.nolcool.com/hall/changwon-lululala-night-2/</loc><lastmod>2026-08-28</lastmod></url>
-  <url><loc>https://d.nolcool.com/hall/bulgwang-hobak-night-2/</loc><lastmod>2026-08-28</lastmod></url>
-  <url><loc>https://d.nolcool.com/hall/cheongdam-night-2/</loc><lastmod>2026-08-28</lastmod></url>
-  <url><loc>https://d.nolcool.com/hall/daejeon-seven-night-2/</loc><lastmod>2026-08-28</lastmod></url>
-  <url><loc>https://d.nolcool.com/hall/dapsimni-miracle-night-2/</loc><lastmod>2026-08-28</lastmod></url>
-  <url><loc>https://d.nolcool.com/hall/busan-asiad-night-2/</loc><lastmod>2026-08-28</lastmod></url>
+<url><loc>https://d.nolcool.com/hall/ulsan-champion-night-2/</loc><lastmod>2026-08-28</lastmod></url>
+<url><loc>https://d.nolcool.com/hall/changwon-lululala-night-2/</loc><lastmod>2026-08-28</lastmod></url>
+<url><loc>https://d.nolcool.com/hall/bulgwang-hobak-night-2/</loc><lastmod>2026-08-28</lastmod></url>
+<url><loc>https://d.nolcool.com/hall/cheongdam-night-2/</loc><lastmod>2026-08-28</lastmod></url>
+<url><loc>https://d.nolcool.com/hall/daejeon-seven-night-2/</loc><lastmod>2026-08-28</lastmod></url>
+<url><loc>https://d.nolcool.com/hall/dapsimni-miracle-night-2/</loc><lastmod>2026-08-28</lastmod></url>
+<url><loc>https://d.nolcool.com/hall/busan-asiad-night-2/</loc><lastmod>2026-08-28</lastmod></url>
 </urlset>
