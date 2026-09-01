@@ -11,6 +11,12 @@ const SITE = {
   kakaoId: 'besta12',
   gsv: 'HJjm7MRxykCQ7d_9L7glaTeeaWrmJIzAKY0BcNcfm88',
   nsv: '284e96dc54d89837007bb8206b6581f6b2fc61e5',
+  /* ★ 2026-09-01 — 홈에 실제로 들어 있는 소유확인 3개. 빌드가 1개로 줄이던 것을 막는다. */
+  nsvAll: [
+    '8e26d60079c0f2c576eafbb70369b5c0751d661f',
+    '284e96dc54d89837007bb8206b6581f6b2fc61e5',
+    '98351629c28bd582fcc8f4cc687e6cad03eb3667',
+  ],
   checkedDate: '2026년 8월 17일',
   checkedISO: '2026-08-17',
   // 사이트맵·RSS 신선도 신호 전용(본문 '확인일' 표기와 분리)

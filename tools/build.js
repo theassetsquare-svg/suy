@@ -26,7 +26,7 @@ function head(p) {
   return `<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="google-site-verification" content="${SITE.gsv}">
-<meta name="naver-site-verification" content="${SITE.nsv}" />
+${(SITE.nsvAll || [SITE.nsv]).map((v) => `<meta name="naver-site-verification" content="${v}" />`).join("\n")}
 <title>${esc(p.title)}</title>
 <meta name="description" content="${esc(p.desc)}">
 <link rel="canonical" href="${url}">
