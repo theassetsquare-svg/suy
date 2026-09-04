@@ -5,24 +5,19 @@
   Permissions-Policy: camera=(), microphone=(), geolocation=()
   Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
   Cache-Control: public, max-age=60, s-maxage=300
-
 /og/*
   Cache-Control: public, max-age=3600, must-revalidate
-
 /assets/*
   Cache-Control: public, max-age=2592000, immutable
-
 /sitemap.xml
   Cache-Control: public, max-age=3600
   Content-Type: application/xml; charset=utf-8
-
 /rss.xml
   Cache-Control: public, max-age=3600
   Content-Type: application/xml; charset=utf-8
-
 /robots.txt
   Cache-Control: public, max-age=3600
-
+  Content-Type: text/plain; charset=utf-8
 /llms.txt
   Cache-Control: public, max-age=3600
   Content-Type: text/plain; charset=utf-8
