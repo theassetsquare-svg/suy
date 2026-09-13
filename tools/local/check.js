@@ -116,7 +116,7 @@ const CHARS = {};
       const u = m[1];
       if (u === SITE.kakao) continue;
       if (u.startsWith(SITE.origin)) continue;
-      if (/^tel:010-(5653-0069|7528-4936|2221-1937|8156-6558|3614-1056)$/.test(u)) continue;
+      if (/^tel:010-(5653-0069|2221-1937|8156-6558|3614-1056)$/.test(u)) continue;
       ext.push(`${f} → ${u}`);
     }
   }
