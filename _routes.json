@@ -1,0 +1,18 @@
+{
+ "version": 1,
+ "include": [
+  "/*"
+ ],
+ "exclude": [
+  "/assets/*",
+  "/og/*",
+  "/apple-touch-icon.png",
+  "/favicon.ico",
+  "/favicon.png",
+  "/llms.txt",
+  "/robots.txt",
+  "/rss.xml",
+  "/sitemap.xml",
+  "/67dcc6a390692f4972b76917f6836a33.txt"
+ ]
+}
