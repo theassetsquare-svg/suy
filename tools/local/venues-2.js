@@ -150,7 +150,7 @@ module.exports = [
 
   {
     slug: 'ulsan-champion', name: '울산챔피언나이트', sub: '울산나이트',
-    ad: { nick: '춘자', phone: '010-5653-0069' },
+    ad: { nick: null, phone: null },
     title: '울산챔피언나이트, 삼산동 밤이 모이는 지점',
     desc: '울산챔피언나이트가 놓인 삼산동 상권을 산업도시 울산의 관점으로 정리했습니다. 삼산동 도착지 이야기입니다. 왜 밤이 여기로 모일까요?',
     topic: '삼산동 상권',

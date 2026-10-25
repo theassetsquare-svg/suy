@@ -16,9 +16,12 @@ const NEW_HOST = 'd.nolcool.com';
 
 /* NW-HIDE-INTERNAL-v1 — 집안 문서는 밖으로 내보내지 않는다(2026-09-07).
    저장소 뿌리가 곧 배포 뿌리라 /CLAUDE.md · /README.md · /GEMINI.md · /package.json · /skills-lock.json ·
-   /src/….template 이 그대로 200 으로 나가고 있었다. 파일은 그대로 두고 응답만 404 로 막는다. */
+   /src/….template 이 그대로 200 으로 나가고 있었다. 파일은 그대로 두고 응답만 404 로 막는다.
+   NW-HIDE-INTERNAL-v2(2026-10-25): /scripts/·/tools/·/docs/·/skills/·/.claude/ 같은 집안 폴더와 점으로 시작하는 주소도 200 으로 나가고 있었다 — 같이 404(/.well-known/ 은 그대로) · 지운 파일도 404. */
 const 집안이름 = ['/claude.md', '/gemini.md', '/agents.md', '/readme.md', '/package.json', '/package-lock.json', '/skills-lock.json'];
-function 집안인가(p) { const q = String(p).toLowerCase(); return 집안이름.includes(q) || q.startsWith(String.fromCharCode(47) + "src" + String.fromCharCode(47)) || q.startsWith(String.fromCharCode(47) + ".env"); }
+const 집안폴더 = ["src", "tools", "functions"];
+const 지운파일 = [];
+function 집안인가(p) { const q = String(p).toLowerCase(); const 첫 = q.split('/')[1] || ''; if (집안이름.includes(q) || 지운파일.includes(q)) return true; if (q.length > 첫.length + 1 && 집안폴더.includes(첫)) return true; return 첫.length > 1 && 첫.startsWith('.') && 첫 !== '.well-known'; }
 /* [폐기 404 — 시작] state/indexnow-removed.json 에서 도구가 채움. 손으로 고치지 않음 */
 const REMOVED_PATHS = new Set(["/area/age-1","/area/booking-1","/area/doksan-gukbinkwan-1","/area/guide-1","/area/hall-1","/area/local-1","/area/location-1","/area/parking-1","/area/time-1","/area/why-1","/faq-1","/first-1","/hall/ansan-hit-night","/hall/bupyeong-kiss-night-1","/hall/cheongju-hobak-night","/hall/daejeon-one-night","/hall/gildong-chance-night","/hall/ilsan-shampoo-night","/hall/osan-hobak-night","/hall/paju-skydome-night","/hall/sangbong-hangukgwan-night","/hall/sillim-grandprix-night","/hall/suwon-chancedome-night","/hall/suwon-korea-night","/hall/ulsan-newworld-night","/hall/yeongdeungpo-terminal-night","/night"]);
 /* [폐기 404 — 끝] */

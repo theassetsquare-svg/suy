@@ -116,12 +116,12 @@ const CHARS = {};
       const u = m[1];
       if (u === SITE.kakao) continue;
       if (u.startsWith(SITE.origin)) continue;
-      if (/^tel:010-(5653-0069|2221-1937|3614-1056)$/.test(u)) continue;
+      if (/^tel:010-(2221-1937|3614-1056)$/.test(u)) continue;
       ext.push(`${f} → ${u}`);
     }
   }
   bad.length ? fails.push(`G7 내부링크 404 → ${bad.join(', ')}`) : notes.push('G7 내부링크 404 0건 (각 페이지 허브 1 + 인접 2)');
-  ext.length ? fails.push(`G7 외부링크 위반 → ${ext.join(', ')}`) : notes.push('G7 외부링크: 카카오 오픈채팅 + 허용된 tel 3종만 존재');
+  ext.length ? fails.push(`G7 외부링크 위반 → ${ext.join(', ')}`) : notes.push('G7 외부링크: 카카오 오픈채팅 + 허용된 tel 2종만 존재');
 }
 
 // ── G8 필수 요소 ──
